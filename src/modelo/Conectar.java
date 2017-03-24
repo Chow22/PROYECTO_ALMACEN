@@ -1,6 +1,6 @@
 package modelo;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conectar {
@@ -9,7 +9,7 @@ public class Conectar {
 	public Conectar() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/biblioteca";
+			String url = "jdbc:mysql://localhost/almacen";
 			cn = (Connection) DriverManager.getConnection(url, "root", "");
 		} catch (Exception e) {
 			e.printStackTrace();
