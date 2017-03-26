@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.ControladorArticulo;
+import controlador.ControladorArticulo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -21,6 +24,15 @@ public class GestionArticulo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
+	private ControladorArticulo controladorArticulo;
+	
+	public ControladorArticulo getControladorArticulo() {
+		return controladorArticulo;
+	}
+
+	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
+		this.controladorArticulo = controladorArticulo;
+	}
 	/**
 	 * Create the dialog.
 	 */
@@ -28,6 +40,7 @@ public class GestionArticulo extends JDialog {
 
 		super(parent, modal);
 
+		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 261);

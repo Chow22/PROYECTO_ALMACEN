@@ -1,4 +1,4 @@
-package controlador;
+package modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
-import modelo.Conectar;
 
 public class ModeloArticulo extends Conectar {
 	

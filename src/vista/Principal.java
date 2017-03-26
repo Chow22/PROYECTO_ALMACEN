@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorArticulo;
-import controlador.ControladorPedidos;
-import controlador.ControladorCliente;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -28,34 +26,39 @@ public class Principal extends JFrame {
 
 	private JPanel contentPane;
 
-	private ControladorArticulo controladorProducto;
-	private ControladorCliente controladorCliente;
-	private ControladorPedidos controladorPedido;
-
+	private ControladorArticulo controladorArticulo;
+	
+	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
+		this.controladorArticulo = controladorArticulo;
+	}
+	
 	public Principal() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 
-		JLabel lblAlmacenLaHuerta = new JLabel("MENU DE COMPRA");
-		lblAlmacenLaHuerta.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblAlmacenLaHuerta.setForeground(Color.WHITE);
-		lblAlmacenLaHuerta.setBounds(127, 11, 169, 39);
-		getContentPane().add(lblAlmacenLaHuerta);
+		JLabel menuCompra = new JLabel("MENU DE COMPRA");
+		menuCompra.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		menuCompra.setForeground(Color.WHITE);
+		menuCompra.setBounds(127, 11, 169, 39);
+		getContentPane().add(menuCompra);
 
-		JButton btnGestionarArticulos = new JButton("Gestionar Articulos");
-		btnGestionarArticulos.addActionListener(new ActionListener() {
+		JButton articulos = new JButton("Gestionar Articulos");
+		articulos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				controladorArticulo.abrirGestionArticulo();
 			}
 		});
-		btnGestionarArticulos.setBounds(139, 81, 139, 23);
-		getContentPane().add(btnGestionarArticulos);
+		articulos.setBounds(139, 81, 139, 23);
+		getContentPane().add(articulos);
 
-		JButton btnGestionarClientes = new JButton("Gestionar Clientes");
-		btnGestionarClientes.setBounds(139, 124, 139, 23);
-		getContentPane().add(btnGestionarClientes);
+		JButton clientes = new JButton("Gestionar Clientes");
+		clientes.setBounds(139, 124, 139, 23);
+		getContentPane().add(clientes);
 
-		JButton btnGestionarPedidos = new JButton("Gestionar Pedidos");
-		btnGestionarPedidos.setBounds(139, 167, 139, 23);
-		getContentPane().add(btnGestionarPedidos);
+		JButton pedidos = new JButton("Gestionar Pedidos");
+		pedidos.setBounds(139, 167, 139, 23);
+		getContentPane().add(pedidos);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));

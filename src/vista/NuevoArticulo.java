@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorArticulo;
+import controlador.ControladorArticulo;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -33,6 +34,13 @@ public class NuevoArticulo extends JDialog {
 	private JTextField existencias;
 	private JLabel label;
 
+	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
+		this.controladorArticulo = controladorArticulo;
+	}
+	public ControladorArticulo getControladorArticulo() {
+		return controladorArticulo;
+	}
+	
 	/**
 	 * Create the dialog.
 	 */

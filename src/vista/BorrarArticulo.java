@@ -9,9 +9,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.ControladorLibro;
-import controlador.ControladorSocio;
-import modelo.Libro;
+import controlador.ControladorArticulo;
+import modelo.Articulo;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -20,29 +19,34 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
 
 public class BorrarArticulo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField id;
-	private JTextField titulo;
-	private JTextField autor;
-	private JTextField num_pag;
 
-	private ControladorLibro controladorLibro;
+	private ControladorArticulo controladorArticulo;
 	
 	private JComboBox lista;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label;
+	private JLabel lblId;
+	private JLabel lblNombre;
+	private JLabel lblProveedor;
+	private JLabel lblPrecio;
+	private JTextField nombre;
+	private JTextField proveedor;
+	private JTextField precio;
+	private JLabel lblExistencias;
+	private JTextField existencias;
 
-	public ControladorLibro getControladorLibro() {
-		return controladorLibro;
+	public ControladorArticulo getControladorArticulo() {
+		return controladorArticulo;
 	}
 
-	public void setControladorLibro(ControladorLibro controladorLibro) {
-		this.controladorLibro = controladorLibro;
+	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
+		this.controladorArticulo = controladorArticulo;
 	}
 
 	/**
@@ -63,93 +67,110 @@ public class BorrarArticulo extends JDialog {
 			lista.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
-					controladorLibro.seleccionarDatosLibro((String)lista.getSelectedItem());
+			//		controladorArticulo.seleccionarDatosArticulo((String)lista.getSelectedItem());
 						
 				}
 			});
-			lista.setModel(new DefaultComboBoxModel(new String[] {"Elige libro....."}));
-			lista.setBounds(109, 26, 231, 36);
+			lista.setModel(new DefaultComboBoxModel(new String[] {"Elige articulo...."}));
+			lista.setBounds(88, 25, 217, 23);
 			contentPanel.add(lista);
 		}
 		{
 			id = new JTextField();
 			id.setEditable(false);
 			id.setColumns(10);
-			id.setBounds(219, 73, 86, 20);
+			id.setBounds(219, 82, 86, 14);
 			contentPanel.add(id);
 		}
 		{
-			label_1 = new JLabel("Id Libro");
-			label_1.setBounds(60, 78, 46, 14);
-			contentPanel.add(label_1);
+			lblId = new JLabel("Id ");
+			lblId.setForeground(Color.WHITE);
+			lblId.setBounds(88, 82, 46, 14);
+			contentPanel.add(lblId);
 		}
 		{
-			titulo = new JTextField();
-			titulo.setEditable(false);
-			titulo.setColumns(10);
-			titulo.setBounds(219, 129, 86, 20);
-			contentPanel.add(titulo);
+			lblNombre = new JLabel("Nombre");
+			lblNombre.setForeground(Color.WHITE);
+			lblNombre.setBounds(88, 107, 46, 14);
+			contentPanel.add(lblNombre);
 		}
 		{
-			label_2 = new JLabel("Titulo");
-			label_2.setBounds(60, 133, 46, 14);
-			contentPanel.add(label_2);
+			lblProveedor = new JLabel("Proveedor");
+			lblProveedor.setForeground(Color.WHITE);
+			lblProveedor.setBounds(88, 132, 64, 14);
+			contentPanel.add(lblProveedor);
 		}
 		{
-			autor = new JTextField();
-			autor.setEditable(false);
-			autor.setColumns(10);
-			autor.setBounds(219, 185, 86, 20);
-			contentPanel.add(autor);
-		}
-		{
-			label_3 = new JLabel("Autor");
-			label_3.setBounds(60, 188, 46, 14);
-			contentPanel.add(label_3);
-		}
-		{
-			num_pag = new JTextField();
-			num_pag.setEditable(false);
-			num_pag.setColumns(10);
-			num_pag.setBounds(219, 241, 86, 20);
-			contentPanel.add(num_pag);
-		}
-		{
-			label = new JLabel("Num  de Paginas");
-			label.setBounds(60, 243, 90, 14);
-			contentPanel.add(label);
+			lblPrecio = new JLabel("Precio");
+			lblPrecio.setForeground(Color.WHITE);
+			lblPrecio.setBounds(88, 157, 90, 14);
+			contentPanel.add(lblPrecio);
 		}
 		
 		JButton borrar = new JButton("BORRAR");
+		borrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				controladorLibro.borrarLibro((String)lista.getSelectedItem());
-				lista.setSelectedIndex(0);
-				controladorLibro.abrirBorrarLibro();
 			}
 		});
-		borrar.setBounds(335, 128, 89, 23);
+		borrar.setBounds(219, 227, 86, 23);
 		contentPanel.add(borrar);
+		
+		nombre = new JTextField();
+		nombre.setEditable(false);
+		nombre.setColumns(10);
+		nombre.setBounds(219, 107, 86, 14);
+		contentPanel.add(nombre);
+		
+		proveedor = new JTextField();
+		proveedor.setEditable(false);
+		proveedor.setColumns(10);
+		proveedor.setBounds(219, 132, 86, 14);
+		contentPanel.add(proveedor);
+		
+		precio = new JTextField();
+		precio.setEditable(false);
+		precio.setColumns(10);
+		precio.setBounds(219, 157, 86, 14);
+		contentPanel.add(precio);
+		{
+			lblExistencias = new JLabel("Existencias");
+			lblExistencias.setForeground(Color.WHITE);
+			lblExistencias.setBounds(88, 182, 90, 14);
+			contentPanel.add(lblExistencias);
+		}
+		{
+			existencias = new JTextField();
+			existencias.setEditable(false);
+			existencias.setColumns(10);
+			existencias.setBounds(219, 184, 86, 14);
+			contentPanel.add(existencias);
+		}
+		
+		JLabel label_4 = new JLabel("");
+		label_4.setIcon(new ImageIcon(BorrarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+		label_4.setBounds(0, 0, 434, 261);
+		contentPanel.add(label_4);
 	
 	}
 
-	public void rellenarLista(ArrayList<Libro> libros) {
+	public void rellenarLista(ArrayList<Articulo> articulos) {
 		
 		lista.removeAllItems();
 		
-		for (Libro libro:libros){
+		for (Articulo articulo:articulos){
 			
-			lista.addItem(libro.getTitulo());
+			//lista.addItem(articulo.getTitulo());
 		}
 	}
 
-	public void mostrarDatos(Libro libro) {
+	public void mostrarDatos(Articulo articulo) {
 		
-		id.setText(String.valueOf(libro.getId()));
-		titulo.setText(libro.getTitulo());
-		autor.setText(libro.getAutor());
-		num_pag.setText(String.valueOf(libro.getNum_pag()));
+//		id.setText(String.valueOf(articulo.getId()));
+//		titulo.setText(articulo.getTitulo());
+//		autor.setText(articulo.getAutor());
+//		num_pag.setText(String.valueOf(articulo.getNum_pag()));
 		
 	}
 public void limpiar() {
