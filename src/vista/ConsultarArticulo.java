@@ -46,7 +46,7 @@ public class ConsultarArticulo extends JDialog {
 
 		super(parent, modal);
 
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -55,12 +55,12 @@ public class ConsultarArticulo extends JDialog {
 		JLabel lblConsultasDeArticulos = new JLabel("CONSULTAS DE ARTICULOS");
 		lblConsultasDeArticulos.setForeground(Color.WHITE);
 		lblConsultasDeArticulos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultasDeArticulos.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblConsultasDeArticulos.setBounds(66, 11, 300, 14);
+		lblConsultasDeArticulos.setFont(new Font("Cambria", Font.BOLD, 24));
+		lblConsultasDeArticulos.setBounds(79, 11, 380, 39);
 		contentPanel.add(lblConsultasDeArticulos);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(34, 61, 359, 178);
+		scrollPane_1.setBounds(34, 61, 477, 216);
 		contentPanel.add(scrollPane_1);
 		
 		tabla = new JTable();
@@ -74,7 +74,7 @@ public class ConsultarArticulo extends JDialog {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
-		label.setBounds(0, 0, 434, 261);
+		label.setBounds(0, 0, 552, 316);
 		contentPanel.add(label);
 	}
 

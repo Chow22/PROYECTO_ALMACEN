@@ -1,10 +1,8 @@
 package vista;
 
-
 import controlador.ControladorArticulo;
 import modelo.ModeloArticulo;
-
-
+import modelo.ModeloCliente;
 
 public class Main {
 
@@ -13,15 +11,14 @@ public class Main {
 		// Crear controladores como variables locales del main
 
 		ControladorArticulo controladorArticulo = new ControladorArticulo();
-		
+
 		ModeloArticulo modeloArticulo = new ModeloArticulo();
-		//ModeloCliente modeloCliente = new ModeloCliente();
-		//ModeloPedido modeloPedido = new ModeloPedido();
-		
-		
+		ModeloCliente modeloCliente = new ModeloCliente();
+		// ModeloPedido modeloPedido = new ModeloPedido();
 
 		Principal principal = new Principal();
 		principal.setControladorArticulo(controladorArticulo);
+		
 		// Crear ventanas como variables locales del main
 		GestionArticulo gestionArticulo = new GestionArticulo(principal, true);
 		gestionArticulo.setControladorArticulo(controladorArticulo);
@@ -31,17 +28,17 @@ public class Main {
 
 		BorrarArticulo borrarArticulo = new BorrarArticulo(gestionArticulo, true);
 		borrarArticulo.setControladorArticulo(controladorArticulo);
-		
+
 		ConsultarArticulo consultarArticulo = new ConsultarArticulo(gestionArticulo, true);
 		consultarArticulo.setControladorArticulo(controladorArticulo);
-		//rellenar controlador articulo
+
+		// rellenar controlador articulo
 		controladorArticulo.setNuevoArticulo(nuevoArticulo);
 		controladorArticulo.setBorrarArticulo(borrarArticulo);
 		controladorArticulo.setConsultarArticulo(consultarArticulo);
 		controladorArticulo.setGestionArticulo(gestionArticulo);
-		//controladorArticulo.setListarArticulos(listarArticulos);
 		controladorArticulo.setModeloArticulo(modeloArticulo);
-		//abrir la ventana principal
+		// abrir la ventana principal
 		principal.setVisible(true);
 	}
 

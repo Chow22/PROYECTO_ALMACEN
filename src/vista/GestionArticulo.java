@@ -22,8 +22,6 @@ import java.awt.Color;
 
 public class GestionArticulo extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
-
 	private ControladorArticulo controladorArticulo;
 	
 	public ControladorArticulo getControladorArticulo() {
@@ -41,55 +39,54 @@ public class GestionArticulo extends JDialog {
 		super(parent, modal);
 
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 434, 261);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel);
-		contentPanel.setLayout(null);
 		{
 			JButton nuevo = new JButton("NUEVO PRODUCTO");
+			nuevo.setFont(new Font("Cambria", Font.BOLD, 13));
+			nuevo.setBounds(179, 104, 170, 23);
+			getContentPane().add(nuevo);
+			{
+				JButton borrar = new JButton("BORRAR PRODUCTO");
+				borrar.setFont(new Font("Cambria", Font.BOLD, 12));
+				borrar.setBounds(179, 148, 170, 23);
+				getContentPane().add(borrar);
+				
+						JButton listar = new JButton("LISTAR PRODUCTOS");
+						listar.setFont(new Font("Cambria", Font.BOLD, 12));
+						listar.setBounds(179, 192, 170, 23);
+						getContentPane().add(listar);
+						{
+							JLabel lblNewLabel = new JLabel("GESTION ARTICULO");
+							lblNewLabel.setBounds(120, 37, 296, 23);
+							getContentPane().add(lblNewLabel);
+							lblNewLabel.setForeground(Color.WHITE);
+							lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+							lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 25));
+						}
+						{
+							JLabel label = new JLabel("");
+							label.setBounds(0, 0, 552, 316);
+							getContentPane().add(label);
+							label.setIcon(new ImageIcon(
+									GestionArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+						}
+						listar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								controladorArticulo.abrirConsultarArticulo();
+							}
+						});
+				borrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						controladorArticulo.abrirBorrarArticulo();
+					}
+				});
+			}
 			nuevo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					controladorArticulo.abrirNuevoArticulo();
 				}
 			});
-			nuevo.setBounds(125, 89, 189, 23);
-			contentPanel.add(nuevo);
-		}
-		{
-			JButton borrar = new JButton("BORRAR PRODUCTO");
-			borrar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					controladorArticulo.abrirBorrarArticulo();
-				}
-			});
-			borrar.setBounds(125, 123, 189, 23);
-			contentPanel.add(borrar);
-		}
-
-		JButton listar = new JButton("LISTAR PRODUCTOS");
-		listar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controladorArticulo.abrirConsultarArticulo();
-			}
-		});
-		listar.setBounds(125, 157, 189, 23);
-		contentPanel.add(listar);
-		{
-			JLabel lblNewLabel = new JLabel("GESTION PRODUCTO");
-			lblNewLabel.setForeground(Color.WHITE);
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-			lblNewLabel.setBounds(101, 30, 234, 23);
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon(
-					GestionArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
-			label.setBounds(0, 0, 434, 261);
-			contentPanel.add(label);
 		}
 	}
 }

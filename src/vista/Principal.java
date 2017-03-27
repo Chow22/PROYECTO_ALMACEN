@@ -34,35 +34,38 @@ public class Principal extends JFrame {
 	
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
 
 		JLabel menuCompra = new JLabel("MENU DE COMPRA");
-		menuCompra.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		menuCompra.setFont(new Font("Cambria", Font.BOLD, 25));
 		menuCompra.setForeground(Color.WHITE);
-		menuCompra.setBounds(127, 11, 169, 39);
+		menuCompra.setBounds(159, 25, 228, 39);
 		getContentPane().add(menuCompra);
 
 		JButton articulos = new JButton("Gestionar Articulos");
+		articulos.setFont(new Font("Cambria", Font.BOLD, 14));
 		articulos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorArticulo.abrirGestionArticulo();
 			}
 		});
-		articulos.setBounds(139, 81, 139, 23);
+		articulos.setBounds(184, 101, 159, 23);
 		getContentPane().add(articulos);
 
 		JButton clientes = new JButton("Gestionar Clientes");
-		clientes.setBounds(139, 124, 139, 23);
+		clientes.setFont(new Font("Cambria", Font.BOLD, 14));
+		clientes.setBounds(184, 147, 159, 23);
 		getContentPane().add(clientes);
 
 		JButton pedidos = new JButton("Gestionar Pedidos");
-		pedidos.setBounds(139, 167, 139, 23);
+		pedidos.setFont(new Font("Cambria", Font.BOLD, 14));
+		pedidos.setBounds(184, 193, 159, 23);
 		getContentPane().add(pedidos);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
-		label.setBounds(0, 0, 434, 261);
+		label.setBounds(0, 0, 552, 316);
 		getContentPane().add(label);
 	}
 }

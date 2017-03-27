@@ -24,8 +24,6 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class BorrarArticulo extends JDialog {
-
-	private final JPanel contentPanel = new JPanel();
 	private JTextField id;
 
 	private ControladorArticulo controladorArticulo;
@@ -38,8 +36,9 @@ public class BorrarArticulo extends JDialog {
 	private JTextField nombre;
 	private JTextField proveedor;
 	private JTextField precio;
-	private JLabel lblExistencias;
 	private JTextField existencias;
+	private JLabel label;
+	private JLabel lblExistencias_1;
 
 	public ControladorArticulo getControladorArticulo() {
 		return controladorArticulo;
@@ -56,14 +55,13 @@ public class BorrarArticulo extends JDialog {
 		
 		super(parent,modal);
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 434, 261);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel);
-		contentPanel.setLayout(null);
 		{
 			lista = new JComboBox();
+			lista.setFont(new Font("Cambria", Font.PLAIN, 13));
+			lista.setBounds(56, 49, 327, 23);
+			getContentPane().add(lista);
 			lista.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
@@ -72,86 +70,90 @@ public class BorrarArticulo extends JDialog {
 				}
 			});
 			lista.setModel(new DefaultComboBoxModel(new String[] {"Elige articulo...."}));
-			lista.setBounds(88, 25, 217, 23);
-			contentPanel.add(lista);
 		}
 		{
 			id = new JTextField();
+			id.setBounds(214, 110, 86, 19);
+			getContentPane().add(id);
 			id.setEditable(false);
 			id.setColumns(10);
-			id.setBounds(219, 82, 86, 14);
-			contentPanel.add(id);
 		}
 		{
 			lblId = new JLabel("Id ");
+			lblId.setFont(new Font("Cambria", Font.BOLD, 15));
+			lblId.setBounds(56, 107, 46, 23);
+			getContentPane().add(lblId);
 			lblId.setForeground(Color.WHITE);
-			lblId.setBounds(88, 82, 46, 14);
-			contentPanel.add(lblId);
 		}
 		{
 			lblNombre = new JLabel("Nombre");
+			lblNombre.setFont(new Font("Cambria", Font.BOLD, 15));
+			lblNombre.setBounds(56, 144, 64, 23);
+			getContentPane().add(lblNombre);
 			lblNombre.setForeground(Color.WHITE);
-			lblNombre.setBounds(88, 107, 46, 14);
-			contentPanel.add(lblNombre);
 		}
 		{
 			lblProveedor = new JLabel("Proveedor");
+			lblProveedor.setFont(new Font("Cambria", Font.BOLD, 15));
+			lblProveedor.setBounds(56, 180, 76, 23);
+			getContentPane().add(lblProveedor);
 			lblProveedor.setForeground(Color.WHITE);
-			lblProveedor.setBounds(88, 132, 64, 14);
-			contentPanel.add(lblProveedor);
 		}
 		{
 			lblPrecio = new JLabel("Precio");
+			lblPrecio.setFont(new Font("Cambria", Font.BOLD, 15));
+			lblPrecio.setBounds(56, 214, 76, 23);
+			getContentPane().add(lblPrecio);
 			lblPrecio.setForeground(Color.WHITE);
-			lblPrecio.setBounds(88, 157, 90, 14);
-			contentPanel.add(lblPrecio);
 		}
 		
 		JButton borrar = new JButton("BORRAR");
-		borrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		borrar.setBounds(432, 251, 86, 23);
+		getContentPane().add(borrar);
+		borrar.setFont(new Font("Cambria", Font.PLAIN, 12));
+		
+		nombre = new JTextField();
+		nombre.setBounds(214, 146, 169, 19);
+		getContentPane().add(nombre);
+		nombre.setEditable(false);
+		nombre.setColumns(10);
+		
+		proveedor = new JTextField();
+		proveedor.setBounds(214, 180, 169, 19);
+		getContentPane().add(proveedor);
+		proveedor.setEditable(false);
+		proveedor.setColumns(10);
+		
+		precio = new JTextField();
+		precio.setBounds(214, 216, 86, 19);
+		getContentPane().add(precio);
+		precio.setEditable(false);
+		precio.setColumns(10);
+		{
+			existencias = new JTextField();
+			existencias.setBounds(214, 252, 86, 19);
+			getContentPane().add(existencias);
+			existencias.setEditable(false);
+			existencias.setColumns(10);
+		}
+		{
+			lblExistencias_1 = new JLabel("Existencias");
+			lblExistencias_1.setForeground(Color.WHITE);
+			lblExistencias_1.setFont(new Font("Cambria", Font.BOLD, 15));
+			lblExistencias_1.setBounds(56, 250, 90, 23);
+			getContentPane().add(lblExistencias_1);
+		}
+		{
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(BorrarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+			label.setBounds(0, 0, 552, 316);
+			getContentPane().add(label);
+		}
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorArticulo.borrarArticulo((String)lista.getSelectedItem());
 			}
 		});
-		borrar.setBounds(219, 227, 86, 23);
-		contentPanel.add(borrar);
-		
-		nombre = new JTextField();
-		nombre.setEditable(false);
-		nombre.setColumns(10);
-		nombre.setBounds(219, 107, 86, 14);
-		contentPanel.add(nombre);
-		
-		proveedor = new JTextField();
-		proveedor.setEditable(false);
-		proveedor.setColumns(10);
-		proveedor.setBounds(219, 132, 86, 14);
-		contentPanel.add(proveedor);
-		
-		precio = new JTextField();
-		precio.setEditable(false);
-		precio.setColumns(10);
-		precio.setBounds(219, 157, 86, 14);
-		contentPanel.add(precio);
-		{
-			lblExistencias = new JLabel("Existencias");
-			lblExistencias.setForeground(Color.WHITE);
-			lblExistencias.setBounds(88, 182, 90, 14);
-			contentPanel.add(lblExistencias);
-		}
-		{
-			existencias = new JTextField();
-			existencias.setEditable(false);
-			existencias.setColumns(10);
-			existencias.setBounds(219, 184, 86, 14);
-			contentPanel.add(existencias);
-		}
-		
-		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(BorrarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
-		label_4.setBounds(0, 0, 434, 261);
-		contentPanel.add(label_4);
 	
 	}
 
