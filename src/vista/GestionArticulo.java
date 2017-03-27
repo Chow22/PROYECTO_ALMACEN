@@ -51,7 +51,7 @@ public class GestionArticulo extends JDialog {
 			JButton nuevo = new JButton("NUEVO PRODUCTO");
 			nuevo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
+					controladorArticulo.abrirNuevoArticulo();
 				}
 			});
 			nuevo.setBounds(125, 89, 189, 23);
@@ -61,7 +61,7 @@ public class GestionArticulo extends JDialog {
 			JButton borrar = new JButton("BORRAR PRODUCTO");
 			borrar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
+					controladorArticulo.abrirBorrarArticulo();
 				}
 			});
 			borrar.setBounds(125, 123, 189, 23);

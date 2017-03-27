@@ -1,7 +1,6 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorArticulo;
-import controlador.ControladorArticulo;
+
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -22,6 +21,10 @@ import java.awt.Color;
 
 public class NuevoArticulo extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6166549450617381457L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
 	private JTextField proveedor;
@@ -83,6 +86,7 @@ public class NuevoArticulo extends JDialog {
 		guardar = new JButton("GUARDAR");
 		guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				controladorArticulo.insertarArticulo(nombre.getText(), proveedor.getText(), Double.parseDouble(precio.getText()),Integer.parseInt(precio.getText()));
 			}
 		});
 		guardar.setBounds(35, 190, 89, 23);
@@ -96,6 +100,14 @@ public class NuevoArticulo extends JDialog {
 		contentPanel.add(lblNewLabel);
 
 		JButton btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nombre.setText("");
+				proveedor.setText("");
+				precio.setText("");
+				existencias.setText("");
+			}
+		});
 		btnLimpiar.setBounds(190, 190, 89, 23);
 		contentPanel.add(btnLimpiar);
 

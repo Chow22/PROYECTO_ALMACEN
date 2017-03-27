@@ -67,7 +67,7 @@ public class BorrarArticulo extends JDialog {
 			lista.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
-			//		controladorArticulo.seleccionarDatosArticulo((String)lista.getSelectedItem());
+					controladorArticulo.seleccionarDatosArticulo((String)lista.getSelectedItem());
 						
 				}
 			});
@@ -161,24 +161,26 @@ public class BorrarArticulo extends JDialog {
 		
 		for (Articulo articulo:articulos){
 			
-			//lista.addItem(articulo.getTitulo());
+			lista.addItem(articulo.getNombre());
 		}
 	}
 
 	public void mostrarDatos(Articulo articulo) {
 		
-//		id.setText(String.valueOf(articulo.getId()));
-//		titulo.setText(articulo.getTitulo());
-//		autor.setText(articulo.getAutor());
-//		num_pag.setText(String.valueOf(articulo.getNum_pag()));
+		id.setText(String.valueOf(articulo.getId()));
+		nombre.setText(articulo.getNombre());
+		proveedor.setText(articulo.getProveedor());
+		precio.setText(String.valueOf(articulo.getPrecio()));
+		existencias.setText(String.valueOf(articulo.getExistencias()));
 		
 	}
 public void limpiar() {
 		lista.setSelectedIndex(0);
-//		id.setText("");
-//		titulo.setText("");
-//		autor.setText("");
-//		num_pag.setText("");
+		id.setText("");
+		nombre.setText("");
+		proveedor.setText("");
+		precio.setText("");
+		existencias.setText("");
 		
 	}
 }

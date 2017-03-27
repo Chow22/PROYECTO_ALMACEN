@@ -23,7 +23,7 @@ public class ModeloArticulo extends Conectar {
 	public ArrayList<Articulo> seleccionarNombres() throws Exception {
 
 		Statement st = cn.createStatement();
-		ResultSet rs = st.executeQuery("SELECT titulo FROM ArticuloS ");
+		ResultSet rs = st.executeQuery("SELECT nombre FROM ArticuloS ");
 		//pasar de ResultSet a ArrayList
 		
 		ArrayList<Articulo> Articulos=new ArrayList<Articulo>();
@@ -40,15 +40,15 @@ public class ModeloArticulo extends Conectar {
 		// escribir la instruccion INSERT
 		try {
 
-			PreparedStatement pst = cn.prepareStatement("INSERT INTO ArticuloS (nombre, proveedor, precio, existencias) VALUES (?,?,?,?)");
+			PreparedStatement pst = cn.prepareStatement("INSERT INTO ARTICULOS (nombre, proveedor, precio, existencias) VALUES (?,?,?,?)");
 			
-			System.out.println(pst);
+			
 			
 			pst.setString(1, articulo.getNombre());
 			pst.setString(2, articulo.getProveedor());
 			pst.setDouble(3, articulo.getPrecio());
 			pst.setInt(4, articulo.getExistencias());
-
+			System.out.println(pst);
 			pst.execute();// ejecuta
 			System.out.println("Articulo insertado correctamente");
 		} catch (SQLException ex) {
@@ -99,18 +99,18 @@ public class ModeloArticulo extends Conectar {
 	public String seleccionarId(int id_Articulo) throws Exception {
 
 		PreparedStatement pst;
-		String titulo="";
+		String nombre="";
 		try {
 			pst = cn.prepareStatement("SELECT TITULO FROM ArticuloS WHERE id=?");
 			pst.setInt(1, id_Articulo);
 
 			ResultSet rs = pst.executeQuery();// ejecuta
 
-			while (rs.next()) { // coge el titulo que es UNO SOLO
+			while (rs.next()) { // coge el nombre que es UNO SOLO
 
-				titulo = rs.getString(1);
+				nombre = rs.getString(1);
 			}
-			return titulo;
+			return nombre;
 			
 		} catch (Exception e) {
 			throw e;
@@ -118,17 +118,17 @@ public class ModeloArticulo extends Conectar {
 		} 
 	}
 
-	public Articulo seleccionarDatosArticulo(String titulo) throws Exception {
+	public Articulo seleccionarDatosArticulo(String nombre) throws Exception {
 		PreparedStatement pst;
 		Articulo Articulo=new Articulo();
 
 		try {
-			pst = cn.prepareStatement("SELECT * FROM ArticuloS WHERE titulo=?");
-			pst.setString(1, titulo);
+			pst = cn.prepareStatement("SELECT * FROM ArticuloS WHERE nombre=?");
+			pst.setString(1, nombre);
 
 			ResultSet rs = pst.executeQuery();// ejecuta
 
-			while (rs.next()) { // coge el titulo que es UNO SOLO
+			while (rs.next()) { // coge el nombre que es UNO SOLO
 				
 				Articulo.setId(rs.getInt(1));
 				Articulo.setNombre(rs.getString(2));
@@ -144,14 +144,14 @@ public class ModeloArticulo extends Conectar {
 		} 
 	}
 
-	public void borrarArticulo(String titulo) throws Exception {
+	public void borrarArticulo(String nombre) throws Exception {
 		
 		PreparedStatement pst;
 		
 		
 		try {
 			pst = cn.prepareStatement("DELETE FROM ArticuloS WHERE TITULO=?");
-			pst.setString(1, titulo);
+			pst.setString(1, nombre);
 			
 			int count=pst.executeUpdate();
 			System.out.println(pst +"  "+ count);

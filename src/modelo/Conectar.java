@@ -1,6 +1,6 @@
 package modelo;
 
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 
 public class Conectar {
