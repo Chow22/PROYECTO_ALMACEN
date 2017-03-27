@@ -31,10 +31,13 @@ public class Main {
 
 		BorrarArticulo borrarArticulo = new BorrarArticulo(gestionArticulo, true);
 		borrarArticulo.setControladorArticulo(controladorArticulo);
+		
+		ConsultarArticulo consultarArticulo = new ConsultarArticulo(gestionArticulo, true);
+		consultarArticulo.setControladorArticulo(controladorArticulo);
 		//rellenar controlador articulo
 		controladorArticulo.setNuevoArticulo(nuevoArticulo);
 		controladorArticulo.setBorrarArticulo(borrarArticulo);
-		//controladorArticulo.setConsultarArticulo(consultarArticulo);
+		controladorArticulo.setConsultarArticulo(consultarArticulo);
 		controladorArticulo.setGestionArticulo(gestionArticulo);
 		//controladorArticulo.setListarArticulos(listarArticulos);
 		controladorArticulo.setModeloArticulo(modeloArticulo);

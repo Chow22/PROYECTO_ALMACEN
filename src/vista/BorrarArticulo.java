@@ -111,7 +111,7 @@ public class BorrarArticulo extends JDialog {
 		borrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				controladorArticulo.borrarArticulo((String)lista.getSelectedItem());
 			}
 		});
 		borrar.setBounds(219, 227, 86, 23);

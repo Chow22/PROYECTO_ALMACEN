@@ -2,9 +2,9 @@ package controlador;
 
 import vista.*;
 
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-
 
 import modelo.*;
 
@@ -15,6 +15,7 @@ public class ControladorArticulo {
 	private GestionArticulo gestionArticulo;
 	private NuevoArticulo nuevoArticulo;
 	private BorrarArticulo borrarArticulo;
+	private ConsultarArticulo consultarArticulo;
 	// private ListarArticulos listarArticulos;
 
 	private ModeloArticulo modeloArticulo;
@@ -28,6 +29,14 @@ public class ControladorArticulo {
 
 		gestionArticulo.setVisible(true);
 
+	}
+
+	public ConsultarArticulo getConsultarArticulo() {
+		return consultarArticulo;
+	}
+
+	public void setConsultarArticulo(ConsultarArticulo consultarArticulo) {
+		this.consultarArticulo = consultarArticulo;
 	}
 
 	public GestionArticulo getGestionArticulo() {
@@ -66,9 +75,20 @@ public class ControladorArticulo {
 		nuevoArticulo.setVisible(true);
 
 	}
-	
+
 	public void abrirBorrarArticulo() {
-		borrarArticulo.setVisible(true);
+		;
+		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+
+		try {
+			articulos = modeloArticulo.seleccionarNombres();
+			borrarArticulo.rellenarLista(articulos);
+
+			borrarArticulo.setVisible(true);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR LIBRO");
+		}
 
 	}
 
@@ -85,29 +105,48 @@ public class ControladorArticulo {
 			modeloArticulo.insertar(articulo);
 			JOptionPane.showMessageDialog(null, "Articulo añadido con exito");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error al insertar nuevo articulo"+e.getMessage());
+			JOptionPane.showMessageDialog(null, "Error al insertar nuevo articulo" + e.getMessage());
 		}
 	}
-		public void seleccionarDatosArticulo(String titulo) {
-			
-			try {
-				Articulo libro=modeloArticulo.seleccionarDatosArticulo(titulo);
-				borrarArticulo.mostrarDatos(libro);
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR LIBRO");
-			}
+
+	public void seleccionarDatosArticulo(String nombre) {
+
+		try {
+			Articulo articulo = modeloArticulo.seleccionarDatosArticulo(nombre);
+			borrarArticulo.mostrarDatos(articulo);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULO");
 		}
-
-
-		public void borrarArticulo(String titulo) {
-			
-			try {
-				System.out.println("BORRARLIBRO");
-				modeloArticulo.borrarArticulo(titulo);
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "ERROR AL BORRAR LIBRO");
-			
-			}
 	}
 
-}
+	public void borrarArticulo(String nombre) {
+
+		try {
+			System.out.println("BORRARLIBRO");
+			modeloArticulo.borrarArticulo(nombre);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL BORRAR ARTICULO");
+
+		}
+	}
+
+	public void abrirConsultarArticulo() {
+		ArrayList<Articulo> articulos;
+		try {
+			articulos = modeloArticulo.seleccionarTodos();
+			consultarArticulo.rellenarTabla(articulos);
+
+			consultarArticulo.setVisible(true);
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULO	"+e.getMessage());
+		}
+		
+	}
+
+	
+		
+		
+	}
+
+

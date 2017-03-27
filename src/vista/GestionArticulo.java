@@ -71,7 +71,7 @@ public class GestionArticulo extends JDialog {
 		JButton listar = new JButton("LISTAR PRODUCTOS");
 		listar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controladorArticulo.abrirConsultarArticulo();
 			}
 		});
 		listar.setBounds(125, 157, 189, 23);

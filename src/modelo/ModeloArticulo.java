@@ -23,17 +23,17 @@ public class ModeloArticulo extends Conectar {
 	public ArrayList<Articulo> seleccionarNombres() throws Exception {
 
 		Statement st = cn.createStatement();
-		ResultSet rs = st.executeQuery("SELECT nombre FROM ArticuloS ");
+		ResultSet rs = st.executeQuery("SELECT nombre FROM ARTICULOS ");
 		//pasar de ResultSet a ArrayList
 		
-		ArrayList<Articulo> Articulos=new ArrayList<Articulo>();
+		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
 		while (rs.next()){
-			Articulo Articulo=new Articulo();
-			Articulo.setNombre(rs.getString(1));
+			Articulo articulo=new Articulo();
+			articulo.setNombre(rs.getString(1));
 			
-			Articulos.add(Articulo);
+			articulos.add(articulo);
 		}
-		return Articulos;
+		return articulos;
 	}
 
 	public void insertar(Articulo articulo) throws SQLException {
@@ -101,7 +101,7 @@ public class ModeloArticulo extends Conectar {
 		PreparedStatement pst;
 		String nombre="";
 		try {
-			pst = cn.prepareStatement("SELECT TITULO FROM ArticuloS WHERE id=?");
+			pst = cn.prepareStatement("SELECT TITULO FROM articulos WHERE id=?");
 			pst.setInt(1, id_Articulo);
 
 			ResultSet rs = pst.executeQuery();// ejecuta
@@ -120,7 +120,7 @@ public class ModeloArticulo extends Conectar {
 
 	public Articulo seleccionarDatosArticulo(String nombre) throws Exception {
 		PreparedStatement pst;
-		Articulo Articulo=new Articulo();
+		Articulo articulo=new Articulo();
 
 		try {
 			pst = cn.prepareStatement("SELECT * FROM ArticuloS WHERE nombre=?");
@@ -130,13 +130,13 @@ public class ModeloArticulo extends Conectar {
 
 			while (rs.next()) { // coge el nombre que es UNO SOLO
 				
-				Articulo.setId(rs.getInt(1));
-				Articulo.setNombre(rs.getString(2));
-				Articulo.setProveedor(rs.getString(3));
-				Articulo.setPrecio(rs.getDouble(4));
-				Articulo.setExistencias(rs.getInt(5));
+				articulo.setId(rs.getInt(1));
+				articulo.setNombre(rs.getString(2));
+				articulo.setProveedor(rs.getString(3));
+				articulo.setPrecio(rs.getDouble(4));
+				articulo.setExistencias(rs.getInt(5));
 			}
-			return Articulo;
+			return articulo;
 			
 		} catch (Exception e) {
 			throw e;
@@ -150,7 +150,7 @@ public class ModeloArticulo extends Conectar {
 		
 		
 		try {
-			pst = cn.prepareStatement("DELETE FROM ArticuloS WHERE TITULO=?");
+			pst = cn.prepareStatement("DELETE FROM articulos WHERE nombre=?");
 			pst.setString(1, nombre);
 			
 			int count=pst.executeUpdate();
@@ -171,27 +171,26 @@ public class ModeloArticulo extends Conectar {
 
 	public ArrayList<Articulo> seleccionarTodos() throws Exception {
 		PreparedStatement pst;
-		Articulo Articulo;
+		Articulo articulo;
 		
 		try {
-			pst = cn.prepareStatement("SELECT * FROM ArticuloS ");
+			pst = cn.prepareStatement("SELECT * FROM ARTICULOS ");
 			
 			ResultSet rs = pst.executeQuery();// ejecuta
 
 			//pasar de ResultSet a ArrayList
 
-			ArrayList<Articulo> Articulos=new ArrayList<Articulo>();
+			ArrayList<Articulo> articulos=new ArrayList<Articulo>();
 			while (rs.next()){
-				Articulo=new Articulo();
-				Articulo.setId(Integer.parseInt(rs.getString(1)));
-				Articulo.setNombre(rs.getString(2));
-				Articulo.setProveedor(rs.getString(3));
-				Articulo.setPrecio(Double.parseDouble(rs.getString(4)));
-				Articulo.setExistencias(Integer.parseInt(rs.getString(4)));
-				//System.out.println(Articulo.getTitulo());
-				Articulos.add(Articulo);
+				articulo=new Articulo();
+				articulo.setId(Integer.parseInt(rs.getString(1)));
+				articulo.setNombre(rs.getString(2));
+				articulo.setProveedor(rs.getString(3));
+				articulo.setPrecio(Double.parseDouble(rs.getString(4)));
+				articulo.setExistencias(Integer.parseInt(rs.getString(5)));
+				articulos.add(articulo);
 			}
-			return Articulos;
+			return articulos;
 			
 		} catch (Exception e) {
 			throw e;
