@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -14,12 +15,14 @@ import javax.swing.table.TableRowSorter;
 import controlador.ControladorCliente;
 import controlador.ControladorCliente;
 import modelo.Cliente;
+import vista.Principal;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class FormularioTodosClientes extends JDialog {
 
@@ -47,25 +50,31 @@ public class FormularioTodosClientes extends JDialog {
 		
 		super(parent,modal);
 		
-		setBounds(100, 100, 552, 300);
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 536, 261);
+		contentPanel.setBounds(0, 0, 552, 316);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		
-		JLabel lblConsultasDeClientes = new JLabel("CONSULTAS DE SOCIOS");
-		lblConsultasDeClientes.setBounds(110, 29, 300, 14);
+		JLabel lblConsultasDeClientes = new JLabel("CONSULTAS DE CLIENTES");
+		lblConsultasDeClientes.setForeground(Color.WHITE);
+		lblConsultasDeClientes.setBounds(110, 29, 300, 24);
 		lblConsultasDeClientes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultasDeClientes.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblConsultasDeClientes.setFont(new Font("Cambria", Font.BOLD, 25));
 		contentPanel.add(lblConsultasDeClientes);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 552, 316);
+		contentPanel.add(label);
+		label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(54, 54, 403, 196);
 		contentPanel.add(scrollPane);
 		
 		tabla = new JTable();
-		scrollPane.setViewportView(tabla);
+		scrollPane.setColumnHeaderView(tabla);
 	}
 
 	public void rellenarTabla(ArrayList<Cliente> Clientes) {

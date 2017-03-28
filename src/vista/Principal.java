@@ -42,20 +42,20 @@ public class Principal extends JFrame {
 		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
 
-		JLabel menuCompra = new JLabel("MENU DE COMPRA");
-		menuCompra.setFont(new Font("Cambria", Font.BOLD, 25));
-		menuCompra.setForeground(Color.WHITE);
-		menuCompra.setBounds(159, 25, 228, 39);
-		getContentPane().add(menuCompra);
+		JLabel almacen = new JLabel("CONTROL ALMACEN");
+		almacen.setFont(new Font("Cambria", Font.BOLD, 25));
+		almacen.setForeground(Color.WHITE);
+		almacen.setBounds(148, 25, 239, 39);
+		getContentPane().add(almacen);
 
 		JButton articulos = new JButton("Gestionar Articulos");
-		articulos.setFont(new Font("Cambria", Font.BOLD, 14));
+		articulos.setFont(new Font("Cambria", Font.BOLD, 15));
 		articulos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorArticulo.abrirGestionArticulo();
 			}
 		});
-		articulos.setBounds(184, 101, 159, 23);
+		articulos.setBounds(184, 89, 169, 35);
 		getContentPane().add(articulos);
 
 		JButton clientes = new JButton("Gestionar Clientes");
@@ -64,13 +64,13 @@ public class Principal extends JFrame {
 				controladorCliente.abrirGestionCliente();
 			}
 		});
-		clientes.setFont(new Font("Cambria", Font.BOLD, 14));
-		clientes.setBounds(184, 147, 159, 23);
+		clientes.setFont(new Font("Cambria", Font.BOLD, 15));
+		clientes.setBounds(184, 135, 169, 35);
 		getContentPane().add(clientes);
 
 		JButton pedidos = new JButton("Gestionar Pedidos");
-		pedidos.setFont(new Font("Cambria", Font.BOLD, 14));
-		pedidos.setBounds(184, 193, 159, 23);
+		pedidos.setFont(new Font("Cambria", Font.BOLD, 15));
+		pedidos.setBounds(184, 181, 169, 35);
 		getContentPane().add(pedidos);
 
 		JLabel label = new JLabel("");

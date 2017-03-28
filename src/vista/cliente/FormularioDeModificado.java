@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorCliente;
 import modelo.Cliente;
+import vista.Principal;
 
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class FormularioDeModificado extends JDialog {
 
@@ -35,6 +38,9 @@ public class FormularioDeModificado extends JDialog {
 
 	private ControladorCliente controladorCliente;
 	private JTextField id;
+	private JButton modificar;
+	private JButton cancelButton;
+	private JLabel label_1;
 
 	/**
 	 * Create the dialog.
@@ -42,20 +48,34 @@ public class FormularioDeModificado extends JDialog {
 	public FormularioDeModificado(GestionCliente parent, boolean modal) {
 		super(parent, modal);
 
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
+		setBounds(100, 100, 568, 355);
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 552, 316);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel);
 
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblNombre.setForeground(Color.WHITE);
+		lblNombre.setBounds(103, 146, 65, 14);
 
 		JLabel lblDireccion = new JLabel("Direccion");
+		lblDireccion.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblDireccion.setForeground(Color.WHITE);
+		lblDireccion.setBounds(103, 171, 79, 14);
 
 		JLabel lblCodPostal = new JLabel("Codigo Postal");
+		lblCodPostal.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblCodPostal.setForeground(Color.WHITE);
+		lblCodPostal.setBounds(103, 196, 100, 14);
 
 		JLabel lblTelefono = new JLabel("Telefono");
-
+		lblTelefono.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblTelefono.setForeground(Color.WHITE);
+		lblTelefono.setBounds(103, 223, 79, 14);
+		
 		comboBoxClientes = new JComboBox();
+		comboBoxClientes.setBounds(253, 90, 173, 20);
 		
 		comboBoxClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -70,115 +90,85 @@ public class FormularioDeModificado extends JDialog {
 		});
 		
 		JLabel lblSelccionaElAlumno = new JLabel("Selcciona el alumno");
+		lblSelccionaElAlumno.setForeground(Color.WHITE);
+		lblSelccionaElAlumno.setBounds(103, 92, 122, 15);
 		lblSelccionaElAlumno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		nombre = new JTextField();
+		nombre.setBounds(253, 144, 173, 20);
 		nombre.setColumns(10);
 
 		direccion = new JTextField();
+		direccion.setBounds(253, 169, 173, 20);
 		direccion.setColumns(10);
 
 		codPostal = new JTextField();
+		codPostal.setBounds(253, 194, 86, 20);
 		codPostal.setColumns(10);
 
 		telefono = new JTextField();
+		telefono.setBounds(253, 221, 86, 20);
 		telefono.setColumns(10);
 
 		JLabel lblId = new JLabel("id");
+		lblId.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblId.setForeground(Color.WHITE);
+		lblId.setBounds(103, 119, 65, 14);
 
 		id = new JTextField();
+		id.setBounds(253, 117, 86, 20);
 		id.setEnabled(false);
 		id.setEditable(false);
 		id.setColumns(10);
-		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(19)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNombre)
-										.addComponent(lblDireccion))
-									.addGap(32)
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addComponent(lblId)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblCodPostal)
-										.addComponent(lblTelefono))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(22)
-							.addComponent(lblSelccionaElAlumno)
-							.addGap(18)
-							.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(237, Short.MAX_VALUE))
-		);
-		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSelccionaElAlumno))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblId)
-						.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(1)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombre)
-						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDireccion)
-						.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblCodPostal)
-						.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTelefono)
-						.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(63, Short.MAX_VALUE))
-		);
-		contentPanel.setLayout(gl_contentPanel);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton modificar = new JButton("MODIFICAR");
-				modificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						modificacion();
-					}
-				});
-				modificar.setActionCommand("OK");
-				buttonPane.add(modificar);
-				getRootPane().setDefaultButton(modificar);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						controladorCliente.cerrarFormularioDeBorrado();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			modificar = new JButton("MODIFICAR");
+			modificar.setFont(new Font("Cambria", Font.BOLD, 12));
+			modificar.setBounds(103, 282, 111, 23);
+			modificar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modificacion();
+				}
+			});
+			modificar.setActionCommand("OK");
+			getRootPane().setDefaultButton(modificar);
 		}
+		{
+			cancelButton = new JButton("CANCEL");
+			cancelButton.setFont(new Font("Cambria", Font.BOLD, 12));
+			cancelButton.setBounds(224, 282, 91, 23);
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controladorCliente.cerrarFormularioDeBorrado();
+				}
+			});
+			cancelButton.setActionCommand("Cancel");
+		}
+		contentPanel.setLayout(null);
+		contentPanel.add(modificar);
+		contentPanel.add(cancelButton);
+		contentPanel.add(lblNombre);
+		contentPanel.add(lblDireccion);
+		contentPanel.add(nombre);
+		contentPanel.add(id);
+		contentPanel.add(direccion);
+		contentPanel.add(lblId);
+		contentPanel.add(lblCodPostal);
+		contentPanel.add(lblTelefono);
+		contentPanel.add(telefono);
+		contentPanel.add(codPostal);
+		contentPanel.add(lblSelccionaElAlumno);
+		contentPanel.add(comboBoxClientes);
+				
+				label_1 = new JLabel("FORMULARIO DE BORRADO");
+				label_1.setForeground(Color.WHITE);
+				label_1.setFont(new Font("Cambria", Font.BOLD, 26));
+				label_1.setBounds(96, 28, 343, 31);
+				contentPanel.add(label_1);
+		
+				JLabel label = new JLabel("");
+				label.setBounds(0, 0, 552, 316);
+				contentPanel.add(label);
+				label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
 	}
 
 	protected void modificacion() {

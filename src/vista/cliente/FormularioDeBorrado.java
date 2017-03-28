@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorCliente;
 import modelo.Cliente;
+import vista.Principal;
 
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class FormularioDeBorrado extends JDialog {
 
@@ -42,20 +45,34 @@ public class FormularioDeBorrado extends JDialog {
 	public FormularioDeBorrado(GestionCliente parent, boolean modal) {
 		super(parent, modal);
 
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
+		setBounds(100, 100, 568, 355);
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 552, 316);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel);
 
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Cambria", Font.BOLD, 13));
+		lblNombre.setForeground(Color.WHITE);
+		lblNombre.setBounds(126, 143, 65, 14);
 
 		JLabel lblDireccion = new JLabel("Direccion");
+		lblDireccion.setFont(new Font("Cambria", Font.BOLD, 13));
+		lblDireccion.setForeground(Color.WHITE);
+		lblDireccion.setBounds(126, 172, 65, 14);
 
 		JLabel lblCodPostal = new JLabel("Codigo Postal");
+		lblCodPostal.setFont(new Font("Cambria", Font.BOLD, 13));
+		lblCodPostal.setForeground(Color.WHITE);
+		lblCodPostal.setBounds(126, 197, 86, 14);
 
 		JLabel lblTelefono = new JLabel("Telefono");
-
+		lblTelefono.setFont(new Font("Cambria", Font.BOLD, 13));
+		lblTelefono.setForeground(Color.WHITE);
+		lblTelefono.setBounds(126, 222, 86, 14);
+		
 		comboBoxClientes = new JComboBox();
+		comboBoxClientes.setBounds(257, 75, 185, 20);
 		
 		comboBoxClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,119 +93,93 @@ public class FormularioDeBorrado extends JDialog {
 		
 
 		JLabel lblSelccionaElAlumno = new JLabel("Selcciona el alumno");
+		lblSelccionaElAlumno.setForeground(Color.WHITE);
+		lblSelccionaElAlumno.setBounds(126, 77, 119, 15);
 		lblSelccionaElAlumno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		nombre = new JTextField();
+		nombre.setBounds(257, 141, 185, 20);
 		nombre.setEditable(false);
 		nombre.setEnabled(false);
 		nombre.setColumns(10);
 
 		direccion = new JTextField();
+		direccion.setBounds(257, 166, 185, 20);
 		direccion.setEditable(false);
 		direccion.setEnabled(false);
 		direccion.setColumns(10);
 
 		codPostal = new JTextField();
+		codPostal.setBounds(257, 195, 86, 20);
 		codPostal.setEditable(false);
 		codPostal.setEnabled(false);
 		codPostal.setColumns(10);
 
 		telefono = new JTextField();
+		telefono.setBounds(257, 220, 86, 20);
 		telefono.setEditable(false);
 		telefono.setEnabled(false);
 		telefono.setColumns(10);
 
 		JLabel lblId = new JLabel("id");
+		lblId.setFont(new Font("Cambria", Font.BOLD, 13));
+		lblId.setForeground(Color.WHITE);
+		lblId.setBounds(126, 116, 65, 14);
 
 		id = new JTextField();
+		id.setBounds(257, 114, 86, 20);
 		id.setEnabled(false);
 		id.setEditable(false);
 		id.setColumns(10);
-		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(19)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPanel.createSequentialGroup()
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblTelefono)
-										.addComponent(lblCodPostal)
-										.addComponent(lblNombre)
-										.addComponent(lblDireccion))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addComponent(lblId)))
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGap(22)
-							.addComponent(lblSelccionaElAlumno)
-							.addGap(18)
-							.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(86, Short.MAX_VALUE))
-		);
-		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSelccionaElAlumno))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblId)
-						.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(1)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombre)
-						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDireccion)
-						.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(36)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCodPostal)
-						.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTelefono)
-						.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(16, Short.MAX_VALUE))
-		);
-		contentPanel.setLayout(gl_contentPanel);
+		contentPanel.setLayout(null);
+		contentPanel.add(lblTelefono);
+		contentPanel.add(lblCodPostal);
+		contentPanel.add(lblNombre);
+		contentPanel.add(lblDireccion);
+		contentPanel.add(nombre);
+		contentPanel.add(id);
+		contentPanel.add(codPostal);
+		contentPanel.add(telefono);
+		contentPanel.add(direccion);
+		contentPanel.add(lblId);
+		contentPanel.add(lblSelccionaElAlumno);
+		contentPanel.add(comboBoxClientes);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton borrar = new JButton("BORRAR");
-				borrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						eliminacion();
-					}
-				});
-				borrar.setActionCommand("OK");
-				buttonPane.add(borrar);
-				getRootPane().setDefaultButton(borrar);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						controladorCliente.cerrarFormularioDeBorrado();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JButton borrar = new JButton("BORRAR");
+			borrar.setFont(new Font("Cambria", Font.BOLD, 13));
+			borrar.setBounds(126, 282, 86, 23);
+			contentPanel.add(borrar);
+			borrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					eliminacion();
+				}
+			});
+			borrar.setActionCommand("OK");
+			getRootPane().setDefaultButton(borrar);
 		}
+		{
+			JButton cancelButton = new JButton("CANCEL");
+			cancelButton.setFont(new Font("Cambria", Font.BOLD, 13));
+			cancelButton.setBounds(222, 282, 91, 23);
+			contentPanel.add(cancelButton);
+			cancelButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controladorCliente.cerrarFormularioDeBorrado();
+				}
+			});
+			cancelButton.setActionCommand("Cancel");
+		}
+				
+				JLabel lblFormularioDeBorrado = new JLabel("FORMULARIO DE BORRADO");
+				lblFormularioDeBorrado.setForeground(Color.WHITE);
+				lblFormularioDeBorrado.setFont(new Font("Cambria", Font.BOLD, 26));
+				lblFormularioDeBorrado.setBounds(118, 25, 343, 31);
+				contentPanel.add(lblFormularioDeBorrado);
+		
+				JLabel label = new JLabel("");
+				label.setBounds(0, 0, 552, 316);
+				contentPanel.add(label);
+				label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
 	}
 
 	protected void eliminacion() {
