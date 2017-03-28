@@ -152,6 +152,7 @@ public class BorrarArticulo extends JDialog {
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controladorArticulo.borrarArticulo((String)lista.getSelectedItem());
+				controladorArticulo.abrirBorrarArticulo();
 			}
 		});
 	

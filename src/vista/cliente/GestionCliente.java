@@ -16,6 +16,8 @@ import vista.Principal;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -53,7 +55,7 @@ public class GestionCliente extends JDialog {
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		{
-			JButton nuevo = new JButton("NUEVO SOCIO");
+			JButton nuevo = new JButton("NUEVO CLIENTE");
 			nuevo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					controladorCliente.abrirFormularioCliente();
@@ -62,17 +64,18 @@ public class GestionCliente extends JDialog {
 			nuevo.setBounds(25, 71, 189, 23);
 			contentPanel.add(nuevo);
 			{
-				JButton borrar = new JButton("BORRAR SOCIO");
+				JButton borrar = new JButton("BORRAR CLIENTE");
 				borrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						controladorCliente.abrirFormDeBorrado();
+						
 					}
 				});
 				borrar.setBounds(25, 105, 189, 23);
 				contentPanel.add(borrar);
 			}
 			{
-				JButton modificar = new JButton("MODIFICAR SOCIOS");
+				JButton modificar = new JButton("MODIFICAR CLIENTES");
 				modificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						controladorCliente.abrirFormDeModificar();
@@ -84,7 +87,7 @@ public class GestionCliente extends JDialog {
 			}
 		}
 		
-		JLabel lblGestionDeClientes = new JLabel("GESTION DE SOCIOS");
+		JLabel lblGestionDeClientes = new JLabel("GESTION DE CLIENTES");
 		lblGestionDeClientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGestionDeClientes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblGestionDeClientes.setBounds(89, 25, 275, 23);
@@ -100,7 +103,7 @@ public class GestionCliente extends JDialog {
 		button.setBounds(25, 173, 189, 23);
 		contentPanel.add(button);
 		{
-			listar = new JButton("LISTAR SOCIOS");
+			listar = new JButton("LISTAR CLIENTES");
 			listar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					

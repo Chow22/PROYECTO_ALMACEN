@@ -1,51 +1,51 @@
 package controlador;
 
-import modelo.Socio;
+import modelo.Cliente;
 
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import modelo.ModeloSocio;
-import vista.FormularioTodosSocios;
+import modelo.ModeloCliente;
 import vista.Principal;
-import vista.socio.FormularioDeBusquedaSocio;
-import vista.socio.FormularioDeBorrado;
-import vista.socio.FormularioDeModificado;
-import vista.socio.FormularioSocio;
-import vista.socio.GestionSocio;
+import vista.cliente.FormularioDeBusquedaCliente;
+import vista.cliente.FormularioDeBorrado;
+import vista.cliente.FormularioDeModificado;
+import vista.cliente.FormularioTodosClientes;
+import vista.cliente.FormularioCliente;
+import vista.cliente.GestionCliente;
 
 public class ControladorCliente {
 
-	// un atributo por cada ventana de Socio
-	// un atributo para el modelo Socio
+	// un atributo por cada ventana de Cliente
+	// un atributo para el modelo Cliente
 
-	private ModeloSocio modeloSocio;
+	private ModeloCliente modeloCliente;
 
-	private GestionSocio gestionSocio;
+	private GestionCliente gestionCliente;
 	private Principal principal;
-	private FormularioSocio formularioSocio;
-	private FormularioDeBusquedaSocio formularioBusquedaSocio;
+	private FormularioCliente formularioCliente;
+	private FormularioDeBusquedaCliente formularioBusquedaCliente;
 	private FormularioDeBorrado formularioDeBorrado;
 	private FormularioDeModificado formDeModificado;
-	private FormularioTodosSocios formTodosSocios;
+	private FormularioTodosClientes formTodosClientes;
 
 
-	public FormularioTodosSocios getFormTodosSocios() {
-		return formTodosSocios;
+	public FormularioTodosClientes getFormTodosClientes() {
+		return formTodosClientes;
 	}
 
-	public void setFormTodosSocios(FormularioTodosSocios formTodosSocios) {
-		this.formTodosSocios = formTodosSocios;
+	public void setFormTodosClientes(FormularioTodosClientes formTodosClientes) {
+		this.formTodosClientes = formTodosClientes;
 	}
 
 
-	public FormularioDeBusquedaSocio getFormularioBusquedaSocio() {
-		return formularioBusquedaSocio;
+	public FormularioDeBusquedaCliente getFormularioBusquedaCliente() {
+		return formularioBusquedaCliente;
 	}
 
-	public void setFormularioBusquedaSocio(FormularioDeBusquedaSocio formularioBusquedaSocio) {
-		this.formularioBusquedaSocio = formularioBusquedaSocio;
+	public void setFormularioBusquedaCliente(FormularioDeBusquedaCliente formularioBusquedaCliente) {
+		this.formularioBusquedaCliente = formularioBusquedaCliente;
 	}
 
 	public FormularioDeModificado getFormDeModificado() {
@@ -57,125 +57,124 @@ public class ControladorCliente {
 	}
 
 	/**
-	 * socio bat sortu eta modeloari insert egiteko esaten dio
+	 * cliente bat sortu eta modeloari insert egiteko esaten dio
 	 * 
 	 * @param nombre
-	 *            nombre del socio
+	 *            nombre del cliente
 	 * @param apellido
-	 *            apellido del socio
+	 *            apellido del cliente
 	 * @param direccion
-	 *            direccion del socio
+	 *            direccion del cliente
+	 * @param string 
 	 * @param poblacion
-	 *            poblacion del socio
+	 *            poblacion del cliente
 	 * @param provincia
-	 *            provincia del socio
+	 *            provincia del cliente
 	 * @param dni
-	 *            dni del socio
+	 *            dni del cliente
 	 * 
 	 */
 
-	public void insertarSocio(String nombre, String apellido, String direccion, String poblacion, String provincia,
-			String dni) {
+	public void insertarCliente(String id,String nombre, String direccion, String codPostal, String telefono, String string) {
 
-		Socio socio = new Socio();
+		Cliente cliente = new Cliente();
 
-		socio.setNombre(nombre);
-		socio.setApellido(apellido);
-		socio.setDireccion(direccion);
-		socio.setPoblacion(poblacion);
-		socio.setProvincia(provincia);
-		socio.setDni(dni);
+		cliente.setId(id);
+		cliente.setNombre(nombre);
+		cliente.setDireccion(direccion);
+		cliente.setCodPostal(codPostal);
+		cliente.setTelefono(telefono);
 
 		try {
-			this.modeloSocio.insertar(socio);
+			this.modeloCliente.insertar(cliente);
 
-			JOptionPane.showMessageDialog(null, "SOCIO INSERTADO EN LA BD");
+			JOptionPane.showMessageDialog(null, "CLIENTE INSERTADO EN LA BD");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR SOCIO");
+			JOptionPane.showMessageDialog(null, "ERROR AL INSERTAR CLIENTE");
 		}
 	}
 
-	public void abrirGestionSocio() {
-		this.gestionSocio.setVisible(true);
+	public void abrirGestionCliente() {
+		this.gestionCliente.setVisible(true);
 	}
 
-	public void abrirFormularioSocio() {
-		this.formularioSocio.setVisible(true);
+	public void abrirFormularioCliente() {
+		this.formularioCliente.setVisible(true);
 	}
 
-	public void abrirBusquedaSocio() {
-		// ArrayList<String> direcciones = this.modeloSocio.selectDirecciones();
-		ArrayList<String> pueblos = this.modeloSocio.selectPoblaciones();
-		ArrayList<String> provincias = this.modeloSocio.selectProvincias();
+	public void abrirBusquedaCliente() {
+		// ArrayList<String> direcciones = this.modeloCliente.selectDirecciones();
+		ArrayList<String> pueblos = this.modeloCliente.selectPoblaciones();
+		ArrayList<String> provincias = this.modeloCliente.selectProvincias();
 
-		// this.formularioBusquedaSocio.rellenarComboDireccion(direcciones);
-		this.formularioBusquedaSocio.rellenarComboPoblacion(pueblos);
-		this.formularioBusquedaSocio.rellenarComboProvincia(provincias);
+		// this.formularioBusquedaCliente.rellenarComboDireccion(direcciones);
+		this.formularioBusquedaCliente.rellenarComboPoblacion(pueblos);
+		this.formularioBusquedaCliente.rellenarComboProvincia(provincias);
 
-		this.formularioBusquedaSocio.setVisible(true);
+		this.formularioBusquedaCliente.setVisible(true);
 
 	}
 
-	// borrado de socio
+	// borrado de cliente
 	public void abrirFormDeBorrado() {
-		ArrayList<Socio> socios = this.modeloSocio.seleccionarTodos();
+		ArrayList<Cliente> clientes = this.modeloCliente.seleccionarTodos();
 
-		this.formularioDeBorrado.rellenarComboSocios(socios);
+		this.formularioDeBorrado.rellenarComboClientes(clientes);
 		this.formularioDeBorrado.setVisible(true);
 	}
 
 	public void abrirFormDeModificar() {
-		ArrayList<Socio> socios = this.modeloSocio.seleccionarTodos();
+		ArrayList<Cliente> clientes = this.modeloCliente.seleccionarTodos();
 
-		this.formDeModificado.rellenarComboSocios(socios);
+		this.formDeModificado.rellenarComboClientes(clientes);
 		this.formDeModificado.setVisible(true);
 	}
 
-	public void rellenarFormDeBorrado(int idSocio) {
-		Socio socio = this.modeloSocio.select(idSocio);
-		this.formularioDeBorrado.rellenarFormulario(socio);
+	public void rellenarFormDeBorrado(String idCliente) {
+		Cliente cliente = this.modeloCliente.select(idCliente);
+		this.formularioDeBorrado.rellenarFormulario(cliente);
 	}
 
-	public void rellenarFormDeModificado(int idSocio) {
-		Socio socio = this.modeloSocio.select(idSocio);
-		this.formDeModificado.rellenarFormulario(socio);
+	public void rellenarFormDeModificado(String idCliente) {
+		Cliente cliente = this.modeloCliente.select(idCliente);
+		this.formDeModificado.rellenarFormulario(cliente);
 	}
 
-	public void eliminarSocio(int idSocio) {
-		this.modeloSocio.borrar(idSocio);
-		this.formularioDeBorrado.mostrarMensaje("socio borrado");
+	public void eliminarCliente(String string) {
+		this.modeloCliente.borrar(string);
+		this.formularioDeBorrado.mostrarMensaje("Cliente destruido con exito");
 		this.formularioDeBorrado.clearForm();
 
-		// formularioa eguneratu
-		ArrayList<Socio> socios = this.modeloSocio.seleccionarTodos();
-		this.formularioDeBorrado.rellenarComboSocios(socios);
+		// actualizar formulario
+		ArrayList<Cliente> clientes = this.modeloCliente.seleccionarTodos();
+		this.formularioDeBorrado.rellenarComboClientes(clientes);
 	}
 
 	public void cerrarFormularioDeBorrado() {
 		this.formularioDeBorrado.clearForm();
 		this.formularioDeBorrado.dispose();
 	}
-	// borrado de socio FIN
+	// borrado de cliente FIN
 
 	public void cerrarFormularioDeModificado() {
 		this.formDeModificado.clear();
 		this.formDeModificado.dispose();
 	}
 
-	public ModeloSocio getModeloSocio() {
-		return modeloSocio;
+	public ModeloCliente getModeloCliente() {
+		return modeloCliente;
 	}
 
-	public void setModeloSocio(ModeloSocio modeloSocio) {
-		this.modeloSocio = modeloSocio;
+	public void setModeloCliente(ModeloCliente modeloCliente) {
+		this.modeloCliente = modeloCliente;
 	}
 
-	public GestionSocio getGestionSocio() {
-		return gestionSocio;
+	public GestionCliente getGestionCliente() {
+		return gestionCliente;
 	}
 
-	public void setGestionSocio(GestionSocio gestionSocio) {
-		this.gestionSocio = gestionSocio;
+	public void setGestionCliente(GestionCliente gestionCliente) {
+		this.gestionCliente = gestionCliente;
 	}
 
 	public Principal getPrincipal() {
@@ -186,12 +185,12 @@ public class ControladorCliente {
 		this.principal = principal;
 	}
 
-	public FormularioSocio getFormularioSocio() {
-		return formularioSocio;
+	public FormularioCliente getFormularioCliente() {
+		return formularioCliente;
 	}
 
-	public void setFormularioSocio(FormularioSocio formularioSocio) {
-		this.formularioSocio = formularioSocio;
+	public void setFormularioCliente(FormularioCliente formularioCliente) {
+		this.formularioCliente = formularioCliente;
 	}
 
 	public FormularioDeBorrado getFormularioDeBorrado() {
@@ -202,60 +201,61 @@ public class ControladorCliente {
 		this.formularioDeBorrado = formularioDeBorrado;
 	}
 
-	public void cerrarFormularioSocio() {
-		this.formularioSocio.clear();
-		this.formularioSocio.dispose();
+	public void cerrarFormularioCliente() {
+		this.formularioCliente.clear();
+		this.formularioCliente.dispose();
 	}
 
-	public void modificarSocio(int parseInt, String nombre, String apellido, String direccion, String poblacion,
-			String provincia, String dni) {
-		Socio socio = new Socio();
-		socio.setNombre(nombre);
-		socio.setApellido(apellido);
-		socio.setDireccion(direccion);
-		socio.setPoblacion(poblacion);
-		socio.setProvincia(provincia);
-		socio.setDni(dni);
+	public void modificarCliente(String id, String nombre,String direccion, String codPostal,
+			String telefono) {
+		Cliente cliente = new Cliente();
 
-		this.modeloSocio.modificar(socio);
+		cliente.setNombre(nombre);
+		cliente.setDireccion(direccion);
+		cliente.setCodPostal(codPostal);
+		cliente.setTelefono(telefono);
+
+		this.modeloCliente.modificar(cliente);
 	}
 
 
 	public void abrirFormListar() {
 		
-		ArrayList<Socio> socios=new ArrayList<Socio>(); 
+		ArrayList<Cliente> clientes=new ArrayList<Cliente>(); 
 		
-		socios=modeloSocio.seleccionarTodos();
+		clientes=modeloCliente.seleccionarTodos();
 		
-		formTodosSocios.rellenarTabla(socios);
+		formTodosClientes.rellenarTabla(clientes);
 		
-		formTodosSocios.setVisible(true);
+		formTodosClientes.setVisible(true);
 		
 }
-	public void mostrarSociosPorNombre(String nombre) {
-		ArrayList<Socio> socios = this.modeloSocio.selectLikeNombre(nombre);
-		this.formularioBusquedaSocio.rellenarTabla(socios);
+	public void mostrarClientesPorNombre(String nombre) {
+		ArrayList<Cliente> clientes = this.modeloCliente.selectLikeNombre(nombre);
+		this.formularioBusquedaCliente.rellenarTabla(clientes);
 	}
 
-	public void mostrarSociosPorApellido(String apellido) {
-		ArrayList<Socio> socios = this.modeloSocio.selectLikeApellido(apellido);
-		this.formularioBusquedaSocio.rellenarTabla(socios);
+	public void mostrarClientesPorApellido(String apellido) {
+		ArrayList<Cliente> clientes = this.modeloCliente.selectLikeApellido(apellido);
+		this.formularioBusquedaCliente.rellenarTabla(clientes);
 	}
 
-	public void mostrarSociosPorDireccion(String direccion) {
-		ArrayList<Socio> socios = this.modeloSocio.selectPorDireccion(direccion);
-		this.formularioBusquedaSocio.rellenarTabla(socios);
+	public void mostrarClientesPorDireccion(String direccion) {
+		ArrayList<Cliente> clientes = this.modeloCliente.selectPorDireccion(direccion);
+		this.formularioBusquedaCliente.rellenarTabla(clientes);
 	}
 
-	public void mostrarSociosPorPoblacion(String poblacion) {
-		ArrayList<Socio> socios = this.modeloSocio.selectPorPoblacion(poblacion);
-		this.formularioBusquedaSocio.rellenarTabla(socios);
+	public void mostrarClientesPorPoblacion(String poblacion) {
+		ArrayList<Cliente> clientes = this.modeloCliente.selectPorPoblacion(poblacion);
+		this.formularioBusquedaCliente.rellenarTabla(clientes);
 	}
 
-	public void mostrarSociosPorProvincia(String provincia) {
-		ArrayList<Socio> socios = this.modeloSocio.selectPorProvincia(provincia);
-		this.formularioBusquedaSocio.rellenarTabla(socios);
+	public void mostrarClientesPorProvincia(String provincia) {
+		ArrayList<Cliente> clientes = this.modeloCliente.selectPorProvincia(provincia);
+		this.formularioBusquedaCliente.rellenarTabla(clientes);
 
 	}
+
+	
 
 }

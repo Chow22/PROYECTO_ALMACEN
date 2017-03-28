@@ -28,14 +28,12 @@ public class FormularioDeBorrado extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
-	private JTextField dni;
-	private JTextField apellido;
 	private JTextField direccion;
-	private JTextField poblacion;
-	private JTextField provincia;
-	private JComboBox comboBoxSocios;
+	private JTextField codPostal;
+	private JTextField telefono;
+	private JComboBox comboBoxClientes;
 
-	private ControladorCliente controladorSocio;
+	private ControladorCliente controladorCliente;
 	private JTextField id;
 
 	/**
@@ -51,29 +49,25 @@ public class FormularioDeBorrado extends JDialog {
 
 		JLabel lblNombre = new JLabel("Nombre");
 
-		JLabel lblApellido = new JLabel("Apellido");
-
 		JLabel lblDireccion = new JLabel("Direccion");
 
-		JLabel lblPoblacion = new JLabel("Poblacion");
+		JLabel lblCodPostal = new JLabel("Codigo Postal");
 
-		JLabel lblProvincia = new JLabel("Provincia");
+		JLabel lblTelefono = new JLabel("Telefono");
 
-		JLabel lblDni = new JLabel("DNI");
-
-		comboBoxSocios = new JComboBox();
+		comboBoxClientes = new JComboBox();
 		
-		comboBoxSocios.addActionListener(new ActionListener() {
+		comboBoxClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// System.out.println(e.getActionCommand());
-				if(comboBoxSocios.getSelectedIndex() == -1){
+				if(comboBoxClientes.getSelectedIndex() == -1){
 					clearTextFields();
 				}else{
-					String nombreSocio = (String) comboBoxSocios.getSelectedItem();
-					if (nombreSocio != null) {
-						String[] partes = nombreSocio.split(":");
+					String nombreCliente = (String) comboBoxClientes.getSelectedItem();
+					if (nombreCliente != null) {
+						String[] partes = nombreCliente.split(":");
 						// en la parte 0 esta el id del cliente
-						controladorSocio.rellenarFormDeBorrado(Integer.parseInt(partes[0]));
+						controladorCliente.rellenarFormDeBorrado(partes[0]);
 					}
 				}
 				
@@ -89,30 +83,20 @@ public class FormularioDeBorrado extends JDialog {
 		nombre.setEnabled(false);
 		nombre.setColumns(10);
 
-		dni = new JTextField();
-		dni.setEditable(false);
-		dni.setEnabled(false);
-		dni.setColumns(10);
-
-		apellido = new JTextField();
-		apellido.setEditable(false);
-		apellido.setEnabled(false);
-		apellido.setColumns(10);
-
 		direccion = new JTextField();
 		direccion.setEditable(false);
 		direccion.setEnabled(false);
 		direccion.setColumns(10);
 
-		poblacion = new JTextField();
-		poblacion.setEditable(false);
-		poblacion.setEnabled(false);
-		poblacion.setColumns(10);
+		codPostal = new JTextField();
+		codPostal.setEditable(false);
+		codPostal.setEnabled(false);
+		codPostal.setColumns(10);
 
-		provincia = new JTextField();
-		provincia.setEditable(false);
-		provincia.setEnabled(false);
-		provincia.setColumns(10);
+		telefono = new JTextField();
+		telefono.setEditable(false);
+		telefono.setEnabled(false);
+		telefono.setColumns(10);
 
 		JLabel lblId = new JLabel("id");
 
@@ -130,27 +114,23 @@ public class FormularioDeBorrado extends JDialog {
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPanel.createSequentialGroup()
 									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblProvincia)
-										.addComponent(lblPoblacion)
-										.addComponent(lblDireccion)
-										.addComponent(lblApellido)
+										.addComponent(lblTelefono)
+										.addComponent(lblCodPostal)
 										.addComponent(lblNombre)
-										.addComponent(lblDni))
+										.addComponent(lblDireccion))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 										.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(dni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(apellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(poblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(provincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addComponent(lblId)))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(22)
 							.addComponent(lblSelccionaElAlumno)
 							.addGap(18)
-							.addComponent(comboBoxSocios, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(86, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
@@ -158,7 +138,7 @@ public class FormularioDeBorrado extends JDialog {
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBoxSocios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSelccionaElAlumno))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
@@ -168,27 +148,19 @@ public class FormularioDeBorrado extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombre)
 						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDni)
-						.addComponent(dni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblApellido)
-						.addComponent(apellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDireccion)
 						.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(36)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCodPostal)
+						.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPoblacion)
-						.addComponent(poblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblProvincia)
-						.addComponent(provincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(lblTelefono)
+						.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -210,7 +182,7 @@ public class FormularioDeBorrado extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorSocio.cerrarFormularioDeBorrado();
+						controladorCliente.cerrarFormularioDeBorrado();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -223,51 +195,47 @@ public class FormularioDeBorrado extends JDialog {
 		int respuesta = JOptionPane.showConfirmDialog(this, "Desea realmente eliminar?", "adf", JOptionPane.YES_NO_OPTION);
 		System.out.println(respuesta);
 		if (respuesta==JOptionPane.YES_OPTION){
-			this.controladorSocio.eliminarSocio(Integer.parseInt(this.id.getText()));
+			this.controladorCliente.eliminarCliente(this.id.getText());
 		}
 		
 	}
 
-	public void rellenarComboSocios(ArrayList<Cliente> clientes) {
+	public void rellenarComboClientes(ArrayList<Cliente> clientes) {
 		Iterator<Cliente> iterator = clientes.iterator();
 		while (iterator.hasNext()) {
 			Cliente cliente = iterator.next();
-			this.comboBoxSocios.addItem(cliente.getId() + ": " + cliente.getNombre() + " " + cliente.getApellido());
+			this.comboBoxClientes.addItem(cliente.getId() + ": " + cliente.getNombre() + " " + cliente.getDireccion());
 		}
-		comboBoxSocios.setSelectedIndex(-1);
+		comboBoxClientes.setSelectedIndex(-1);
 	}
 
-	public ControladorCliente getControladorSocio() {
-		return controladorSocio;
+	public ControladorCliente getControladorCliente() {
+		return controladorCliente;
 	}
 
-	public void setControladorSocio(ControladorCliente controladorSocio) {
-		this.controladorSocio = controladorSocio;
+	public void setControladorCliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 	}
 
 	public void rellenarFormulario(Cliente cliente) {
 		this.id.setText(String.valueOf(cliente.getId()));
 		this.nombre.setText(cliente.getNombre());
-		this.apellido.setText(cliente.getApellido());
 		this.direccion.setText(cliente.getDireccion());
-		this.poblacion.setText(cliente.getPoblacion());
-		this.provincia.setText(cliente.getProvincia());
-		this.dni.setText(cliente.getDni());
+		this.codPostal.setText(cliente.getCodPostal());
+		this.telefono.setText(cliente.getTelefono());
 	}
 
 	public void clearForm() {
-		this.comboBoxSocios.removeAllItems();
+		this.comboBoxClientes.removeAllItems();
 		this.clearTextFields();
 	}
 	
 	public void clearTextFields(){
 		this.id.setText("");
 		this.nombre.setText("");
-		this.apellido.setText("");
 		this.direccion.setText("");
-		this.poblacion.setText("");
-		this.provincia.setText("");
-		this.dni.setText("");
+		this.codPostal.setText("");
+		this.telefono.setText("");
 		
 	}
 
@@ -275,6 +243,8 @@ public class FormularioDeBorrado extends JDialog {
 		JOptionPane.showMessageDialog(this, string);
 		
 	}
+
+
 
 	
 }

@@ -23,21 +23,20 @@ public class FormularioCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JLabel lblNombre;
-	private JTextField textNombre;
-	private JTextField textApellido;
-	private JTextField textDireccion;
-	private JTextField textPoblacion;
-	private JTextField textProvincia;
-	private JTextField textDni;
+	private JTextField nombre;
+	private JTextField direccion;
+	private JTextField codPostal;
+	private JTextField telefono;
 
-	private ControladorCliente controladorSocio;
+	private ControladorCliente controladorCliente;
+	private JTextField id;
 
-	public ControladorCliente getControladorSocio() {
-		return controladorSocio;
+	public ControladorCliente getControladorCliente() {
+		return controladorCliente;
 	}
 
-	public void setControladorSocio(ControladorCliente controladorSocio) {
-		this.controladorSocio = controladorSocio;
+	public void setControladorCliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 	}
 
 	/**
@@ -51,122 +50,76 @@ public class FormularioCliente extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			lblNombre = new JLabel("Nombre");
+			lblNombre.setBounds(127, 66, 37, 14);
 		}
 
-		JLabel lblApellido = new JLabel("Apellido");
-
 		JLabel lblDireccion = new JLabel("Direccion");
+		lblDireccion.setBounds(127, 97, 43, 14);
 
-		JLabel lblProvincia = new JLabel("Provincia");
+		JLabel lblProvincia = new JLabel("Codigo Postal");
+		lblProvincia.setBounds(127, 131, 65, 14);
 
-		JLabel lblPoblacion = new JLabel("Poblacion");
+		JLabel lbltelef = new JLabel("Telefono");
+		lbltelef.setBounds(127, 159, 42, 14);
 
-		JLabel lblDni = new JLabel("DNI");
+		nombre = new JTextField();
+		nombre.setBounds(231, 63, 86, 20);
+		nombre.setColumns(10);
 
-		textNombre = new JTextField();
-		textNombre.setColumns(10);
+		direccion = new JTextField();
+		direccion.setBounds(231, 94, 86, 20);
+		direccion.setColumns(10);
 
-		textApellido = new JTextField();
-		textApellido.setColumns(10);
+		codPostal = new JTextField();
+		codPostal.setBounds(231, 125, 86, 20);
+		codPostal.setColumns(10);
 
-		textDireccion = new JTextField();
-		textDireccion.setColumns(10);
-
-		textPoblacion = new JTextField();
-		textPoblacion.setColumns(10);
-
-		textProvincia = new JTextField();
-		textProvincia.setColumns(10);
-
-		textDni = new JTextField();
-		textDni.setColumns(10);
+		telefono = new JTextField();
+		telefono.setBounds(231, 153, 86, 20);
+		telefono.setColumns(10);
 
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(121, 227, 71, 23);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.insertarSocio(textNombre.getText(), textApellido.getText(), textDireccion.getText(), textPoblacion.getText(), textProvincia.getText(), textDni.getText());
-				controladorSocio.cerrarFormularioSocio();
+				controladorCliente.insertarCliente(id.getText(),nombre.getText(), direccion.getText(), direccion.getText(), codPostal.getText(), telefono.getText());
+				controladorCliente.cerrarFormularioCliente();
 			}
 		});
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(242, 227, 75, 23);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.cerrarFormularioSocio();
+				controladorCliente.cerrarFormularioCliente();
 			}
 		});
-		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNombre)
-						.addComponent(lblApellido)
-						.addComponent(lblDireccion)
-						.addComponent(lblPoblacion)
-						.addComponent(lblProvincia)
-						.addComponent(lblDni))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textPoblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPanel.createSequentialGroup()
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textDireccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(273, Short.MAX_VALUE))
-						.addComponent(textDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(btnGuardar)
-					.addGap(39)
-					.addComponent(btnCancelar)
-					.addContainerGap(229, Short.MAX_VALUE))
-		);
-		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombre)
-						.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblApellido)
-						.addComponent(textApellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDireccion)
-						.addComponent(textDireccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPoblacion)
-						.addComponent(textPoblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblProvincia)
-						.addComponent(textProvincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDni)
-						.addComponent(textDni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnGuardar)
-						.addComponent(btnCancelar))
-					.addContainerGap(49, Short.MAX_VALUE))
-		);
-		contentPanel.setLayout(gl_contentPanel);
+		contentPanel.setLayout(null);
+		contentPanel.add(lblNombre);
+		contentPanel.add(lblDireccion);
+		contentPanel.add(lblProvincia);
+		contentPanel.add(lbltelef);
+		contentPanel.add(nombre);
+		contentPanel.add(direccion);
+		contentPanel.add(codPostal);
+		contentPanel.add(telefono);
+		contentPanel.add(btnGuardar);
+		contentPanel.add(btnCancelar);
+		
+		JLabel lblId = new JLabel("Id");
+		lblId.setBounds(127, 38, 37, 14);
+		contentPanel.add(lblId);
+		
+		id = new JTextField();
+		id.setColumns(10);
+		id.setBounds(231, 35, 86, 20);
+		contentPanel.add(id);
 	}
 
 	public void clear() {
-		this.textNombre.setText("");
-		this.textApellido.setText("");
-		this.textDireccion.setText("");
-		this.textDni.setText("");
-		this.textPoblacion.setText("");
-		this.textProvincia.setText("");	
+		this.nombre.setText("");
+		this.direccion.setText("");
+		this.telefono.setText("");
+		this.codPostal.setText("");	
 	}
 }

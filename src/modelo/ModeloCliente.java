@@ -16,7 +16,7 @@ public class ModeloCliente extends Conectar {
 		try {
 			st = cn.createStatement();
 
-			ResultSet rs = st.executeQuery("SELECT * FROM SOCIOS ");
+			ResultSet rs = st.executeQuery("SELECT * FROM CLIENTES ");
 
 			// pasar de ResultSet a ArrayList
 
@@ -46,12 +46,13 @@ public class ModeloCliente extends Conectar {
 		PreparedStatement pst;
 		try {
 			pst = cn.prepareStatement(
-					"INSERT INTO SOCIOS(nombre,apellido,direccion," + "poblacion,provincia,dni) VALUES (?,?,?,?,?,?)");
-
-			pst.setString(1, cliente.getNombre());
-			pst.setString(2, cliente.getDireccion());
-			pst.setString(3, cliente.getCodPostal());
-			pst.setString(4, cliente.getTelefono());
+					"INSERT INTO CLIENTES(id,nombre,direccion,codpostal,telefono) VALUES (?,?,?,?,?)");
+			
+			pst.setString(1, cliente.getId());
+			pst.setString(2, cliente.getNombre());
+			pst.setString(3, cliente.getDireccion());
+			pst.setString(4, cliente.getCodPostal());
+			pst.setString(5, cliente.getTelefono());
 
 			System.out.println(pst);
 			pst.execute();
@@ -62,11 +63,11 @@ public class ModeloCliente extends Conectar {
 
 	}
 
-	public void borrar(int id) {
+	public void borrar(String id) {
 
 		try {
 			PreparedStatement pst = cn.prepareStatement("DELETE FROM clientes WHERE id = ?");
-			pst.setInt(1, id);
+			pst.setString(1, id);
 			pst.execute();// ejecuta
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -204,8 +205,8 @@ public class ModeloCliente extends Conectar {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+				Cliente cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 
 				clientes.add(cliente);
 			}
@@ -228,8 +229,8 @@ public class ModeloCliente extends Conectar {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+				Cliente cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 
 				clientes.add(cliente);
 			}
@@ -252,8 +253,8 @@ public class ModeloCliente extends Conectar {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+				Cliente cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 
 				clientes.add(cliente);
 			}
@@ -276,8 +277,8 @@ public class ModeloCliente extends Conectar {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+				Cliente cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 
 				clientes.add(cliente);
 			}
@@ -300,8 +301,8 @@ public class ModeloCliente extends Conectar {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+				Cliente cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5));
 
 				clientes.add(cliente);
 			}

@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import controlador.ControladorCliente;
-import modelo.Libro;
 import modelo.Cliente;
 
 import javax.swing.GroupLayout;
@@ -33,23 +32,23 @@ import java.awt.Component;
 
 import javax.swing.JScrollPane;
 
-public class FormularioDeBusquedaSocio extends JDialog {
-//	public FormularioBusquedaSocio() {
+public class FormularioDeBusquedaCliente extends JDialog {
+//	public FormularioBusquedaCliente() {
 //	}
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
 	private JTextField apellido;
 
-	private ControladorCliente controladorSocio;
+	private ControladorCliente controladorCliente;
 	private JTable table;
-	private JComboBox comboProvincias;
-	private JComboBox comboPoblacion;
+	private JComboBox comboTelefono;
+	private JComboBox comboCodPostal;
 
 	/**
 	 * Create the dialog.
 	 */
-	public FormularioDeBusquedaSocio(GestionCliente parent, boolean modal) {
+	public FormularioDeBusquedaCliente(GestionCliente parent, boolean modal) {
 		super(parent, modal);
 
 		setBounds(100, 100, 596, 328);
@@ -59,12 +58,12 @@ public class FormularioDeBusquedaSocio extends JDialog {
 
 		JLabel lblNombre = new JLabel("Nombre");
 
-		JLabel lblApellido = new JLabel("Apellido");
+		JLabel lblDireccion = new JLabel("Direccion");
 
-		JLabel lblPoblacion = new JLabel("Poblacion");
+		JLabel lblCodPostal = new JLabel("Codigo Postal");
 		
 
-		JLabel lblSelccionaElAlumno = new JLabel("Busqueda de Socio");
+		JLabel lblSelccionaElAlumno = new JLabel("Busqueda de Cliente");
 		lblSelccionaElAlumno.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		nombre = new JTextField();
@@ -80,7 +79,7 @@ public class FormularioDeBusquedaSocio extends JDialog {
 		JButton buscarNombre = new JButton("Buscar");
 		buscarNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.mostrarSociosPorNombre(nombre.getText());
+				controladorCliente.mostrarClientesPorNombre(nombre.getText());
 			}
 		});
 		
@@ -89,7 +88,7 @@ public class FormularioDeBusquedaSocio extends JDialog {
 		JButton buscarApellido = new JButton("Buscar");
 		buscarApellido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.mostrarSociosPorApellido(apellido.getText());
+				controladorCliente.mostrarClientesPorApellido(apellido.getText());
 			}
 		});
 		
@@ -97,22 +96,22 @@ public class FormularioDeBusquedaSocio extends JDialog {
 		JButton buscarPoblacion = new JButton("Buscar");
 		buscarPoblacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.mostrarSociosPorPoblacion(String.valueOf(comboPoblacion.getSelectedItem()));
+				controladorCliente.mostrarClientesPorPoblacion(String.valueOf(comboCodPostal.getSelectedItem()));
 			}
 		});
 		
-		JLabel lblProvincia = new JLabel("Provincia");
+		JLabel lblTelefono = new JLabel("Telefono");
 		
-		comboProvincias = new JComboBox();
-		comboProvincias.setEditable(true);
+		comboTelefono = new JComboBox();
+		comboTelefono.setEditable(true);
 		
-		comboPoblacion = new JComboBox();
-		comboPoblacion.setEditable(true);
+		comboCodPostal = new JComboBox();
+		comboCodPostal.setEditable(true);
 		
 		JButton buscarProvincia = new JButton("Buscar");
 		buscarProvincia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controladorSocio.mostrarSociosPorProvincia(String.valueOf(comboProvincias.getSelectedItem()));
+				controladorCliente.mostrarClientesPorProvincia(String.valueOf(comboTelefono.getSelectedItem()));
 			}
 		});
 		
@@ -126,15 +125,15 @@ public class FormularioDeBusquedaSocio extends JDialog {
 							.addGap(22)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNombre)
-								.addComponent(lblApellido)
-								.addComponent(lblPoblacion)
-								.addComponent(lblProvincia, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblDireccion)
+								.addComponent(lblCodPostal)
+								.addComponent(lblTelefono, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
 							.addGap(10)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(apellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboPoblacion, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboProvincias, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+								.addComponent(comboCodPostal, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboTelefono, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
 							.addGap(10)
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(buscarNombre, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
@@ -167,26 +166,26 @@ public class FormularioDeBusquedaSocio extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(4)
-							.addComponent(lblApellido))
+							.addComponent(lblDireccion))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(1)
 							.addComponent(apellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(buscarApellido))
 					.addGap(11)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblPoblacion)
+						.addComponent(lblCodPostal)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(1)
-							.addComponent(comboPoblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(comboCodPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(buscarPoblacion))
 					.addGap(18)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(4)
-							.addComponent(lblProvincia))
+							.addComponent(lblTelefono))
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(1)
-							.addComponent(comboProvincias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(comboTelefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(buscarProvincia))
 					.addGap(7)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
@@ -205,21 +204,21 @@ public class FormularioDeBusquedaSocio extends JDialog {
 	
 	
 
-	public ControladorCliente getControladorSocio() {
-		return controladorSocio;
+	public ControladorCliente getControladorCliente() {
+		return controladorCliente;
 	}
 
-	public void setControladorSocio(ControladorCliente controladorSocio) {
-		this.controladorSocio = controladorSocio;
+	public void setControladorCliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 	}
 
-	public void rellenarTabla(ArrayList<Cliente> socios) {
+	public void rellenarTabla(ArrayList<Cliente> clientes) {
 		DefaultTableModel dtm = new DefaultTableModel();
 
-		dtm.setColumnIdentifiers(new Object[] { "NOMBRE", "APELLIDO", "DIRECCION", "POBLACION", "PROVINCIA", "DNI"});
+		dtm.setColumnIdentifiers(new Object[] { "NOMBRE", "DIRECCION", "CODIGO POSTAL", "TELEFONO"});
 
-		for (Cliente socio : socios) {
-			dtm.addRow(new Object[] { socio.getNombre(), socio.getApellido(), socio.getDireccion(), socio.getPoblacion(), socio.getProvincia(), socio.getDni()});
+		for (Cliente cliente : clientes) {
+			dtm.addRow(new Object[] { cliente.getNombre(), cliente.getDireccion(), cliente.getCodPostal(), cliente.getTelefono()});
 		}
 		table.setModel(dtm);
 		TableRowSorter<DefaultTableModel> modeloOrdenado = new TableRowSorter<DefaultTableModel>(dtm);
@@ -237,17 +236,22 @@ public class FormularioDeBusquedaSocio extends JDialog {
 	
 	public void rellenarComboPoblacion(ArrayList<String> pueblos) {
 		for(String pueblo: pueblos){
-			this.comboPoblacion.addItem(pueblo);
+			this.comboCodPostal.addItem(pueblo);
 		}
-		this.comboPoblacion.setSelectedIndex(-1);
+		this.comboCodPostal.setSelectedIndex(-1);
 	}
 
 	
 	public void rellenarComboProvincia(ArrayList<String> provincias) {
 		for(String provincia: provincias){
-			this.comboProvincias.addItem(provincia);
+			this.comboTelefono.addItem(provincia);
 		}
-		this.comboProvincias.setSelectedIndex(-1);
+		this.comboTelefono.setSelectedIndex(-1);
 		
 	}
+
+
+
+
+
 }

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorArticulo;
+import controlador.ControladorCliente;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -27,9 +28,13 @@ public class Principal extends JFrame {
 	private JPanel contentPane;
 
 	private ControladorArticulo controladorArticulo;
+	private ControladorCliente controladorCliente;
 	
 	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
 		this.controladorArticulo = controladorArticulo;
+	}
+	public void setControladorCliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 	}
 	
 	public Principal() {
@@ -54,6 +59,11 @@ public class Principal extends JFrame {
 		getContentPane().add(articulos);
 
 		JButton clientes = new JButton("Gestionar Clientes");
+		clientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controladorCliente.abrirGestionCliente();
+			}
+		});
 		clientes.setFont(new Font("Cambria", Font.BOLD, 14));
 		clientes.setBounds(184, 147, 159, 23);
 		getContentPane().add(clientes);
@@ -68,4 +78,5 @@ public class Principal extends JFrame {
 		label.setBounds(0, 0, 552, 316);
 		getContentPane().add(label);
 	}
+
 }

@@ -77,7 +77,7 @@ public class ControladorArticulo {
 	}
 
 	public void abrirBorrarArticulo() {
-		;
+		
 		ArrayList<Articulo> articulos = new ArrayList<Articulo>();
 
 		try {

@@ -28,14 +28,12 @@ public class FormularioDeModificado extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
-	private JTextField dni;
-	private JTextField apellido;
 	private JTextField direccion;
-	private JTextField poblacion;
-	private JTextField provincia;
-	private JComboBox comboBoxSocios;
+	private JTextField codPostal;
+	private JTextField telefono;
+	private JComboBox comboBoxClientes;
 
-	private ControladorCliente controladorSocio;
+	private ControladorCliente controladorCliente;
 	private JTextField id;
 
 	/**
@@ -51,26 +49,22 @@ public class FormularioDeModificado extends JDialog {
 
 		JLabel lblNombre = new JLabel("Nombre");
 
-		JLabel lblApellido = new JLabel("Apellido");
-
 		JLabel lblDireccion = new JLabel("Direccion");
 
-		JLabel lblPoblacion = new JLabel("Poblacion");
+		JLabel lblCodPostal = new JLabel("Codigo Postal");
 
-		JLabel lblProvincia = new JLabel("Provincia");
+		JLabel lblTelefono = new JLabel("Telefono");
 
-		JLabel lblDni = new JLabel("DNI");
-
-		comboBoxSocios = new JComboBox();
+		comboBoxClientes = new JComboBox();
 		
-		comboBoxSocios.addActionListener(new ActionListener() {
+		comboBoxClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// System.out.println(e.getActionCommand());
-				String nombreSocio = (String) comboBoxSocios.getSelectedItem();
-				if (nombreSocio != null) {
-					String[] partes = nombreSocio.split(":");
-					// en la parte 0 esta el id del socio
-					controladorSocio.rellenarFormDeModificado(Integer.parseInt(partes[0]));
+				String nombreCliente = (String) comboBoxClientes.getSelectedItem();
+				if (nombreCliente != null) {
+					String[] partes = nombreCliente.split(":");
+					// en la parte 0 esta el id del cliente
+					controladorCliente.rellenarFormDeModificado(partes[0]);
 				}
 			}
 		});
@@ -81,20 +75,14 @@ public class FormularioDeModificado extends JDialog {
 		nombre = new JTextField();
 		nombre.setColumns(10);
 
-		dni = new JTextField();
-		dni.setColumns(10);
-
-		apellido = new JTextField();
-		apellido.setColumns(10);
-
 		direccion = new JTextField();
 		direccion.setColumns(10);
 
-		poblacion = new JTextField();
-		poblacion.setColumns(10);
+		codPostal = new JTextField();
+		codPostal.setColumns(10);
 
-		provincia = new JTextField();
-		provincia.setColumns(10);
+		telefono = new JTextField();
+		telefono.setColumns(10);
 
 		JLabel lblId = new JLabel("id");
 
@@ -103,103 +91,67 @@ public class FormularioDeModificado extends JDialog {
 		id.setEditable(false);
 		id.setColumns(10);
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel
-				.setHorizontalGroup(
-						gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(
-										gl_contentPanel
-												.createSequentialGroup().addGroup(gl_contentPanel
-														.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel
-																.createSequentialGroup()
-																.addGap(19)
-																.addGroup(gl_contentPanel.createParallelGroup(
-																		Alignment.LEADING)
-																		.addGroup(gl_contentPanel
-																				.createSequentialGroup()
-																				.addGroup(gl_contentPanel
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(lblProvincia)
-																						.addComponent(lblPoblacion)
-																						.addComponent(lblDireccion)
-																						.addComponent(lblApellido)
-																						.addComponent(
-																								lblNombre)
-																						.addComponent(lblDni))
-																				.addPreferredGap(
-																						ComponentPlacement.UNRELATED)
-																				.addGroup(gl_contentPanel
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(nombre,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(id,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(dni,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(apellido,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(direccion,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(poblacion,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(provincia,
-																								GroupLayout.PREFERRED_SIZE,
-																								GroupLayout.DEFAULT_SIZE,
-																								GroupLayout.PREFERRED_SIZE)))
-																		.addComponent(lblId))
-																.addGap(92))
-														.addGroup(gl_contentPanel.createSequentialGroup().addGap(22)
-																.addComponent(lblSelccionaElAlumno).addGap(18)
-																.addComponent(comboBoxSocios,
-																		GroupLayout.PREFERRED_SIZE,
-																		GroupLayout.DEFAULT_SIZE,
-																		GroupLayout.PREFERRED_SIZE)))
-												.addContainerGap(172, Short.MAX_VALUE)));
-		gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING).addGroup(gl_contentPanel
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBoxSocios, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+		gl_contentPanel.setHorizontalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(19)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNombre)
+										.addComponent(lblDireccion))
+									.addGap(32)
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(lblId)
+								.addGroup(gl_contentPanel.createSequentialGroup()
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblCodPostal)
+										.addComponent(lblTelefono))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGap(22)
+							.addComponent(lblSelccionaElAlumno)
+							.addGap(18)
+							.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(237, Short.MAX_VALUE))
+		);
+		gl_contentPanel.setVerticalGroup(
+			gl_contentPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboBoxClientes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSelccionaElAlumno))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblId).addComponent(id,
-						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGap(1)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNombre).addComponent(
-						nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblDni).addComponent(dni,
-						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblApellido)
-						.addComponent(apellido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblDireccion)
-						.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblPoblacion)
-						.addComponent(poblacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblProvincia)
-						.addComponent(provincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblId)
+						.addComponent(id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombre)
+						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDireccion)
+						.addComponent(direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblCodPostal)
+						.addComponent(codPostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTelefono)
+						.addComponent(telefono, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(63, Short.MAX_VALUE))
+		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
@@ -220,7 +172,7 @@ public class FormularioDeModificado extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						controladorSocio.cerrarFormularioDeBorrado();
+						controladorCliente.cerrarFormularioDeBorrado();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -231,52 +183,50 @@ public class FormularioDeModificado extends JDialog {
 
 	protected void modificacion() {
 	
-			this.controladorSocio.modificarSocio(Integer.parseInt(this.id.getText()), this.nombre.getText(), this.apellido.getText(), this.direccion.getText(), this.poblacion.getText(), this.provincia.getText(), this.dni.getText());
+			this.controladorCliente.modificarCliente(this.id.getText(), this.nombre.getText(), this.direccion.getText(), this.codPostal.getText(), this.telefono.getText());
 		
 		
 	}
 
-	public void rellenarComboSocios(ArrayList<Cliente> socios) {
-		Iterator<Cliente> iterator = socios.iterator();
+	public void rellenarComboClientes(ArrayList<Cliente> clientes) {
+		Iterator<Cliente> iterator = clientes.iterator();
 		while (iterator.hasNext()) {
-			Cliente socio = iterator.next();
-			this.comboBoxSocios.addItem(socio.getId() + ": " + socio.getNombre() + " " + socio.getApellido());
+			Cliente cliente = iterator.next();
+			this.comboBoxClientes.addItem(cliente.getId() + ": " + cliente.getNombre() + " " + cliente.getDireccion());
 		}
 	}
 
-	public ControladorCliente getControladorSocio() {
-		return controladorSocio;
+	public ControladorCliente getControladorCliente() {
+		return controladorCliente;
 	}
 
-	public void setControladorSocio(ControladorCliente controladorSocio) {
-		this.controladorSocio = controladorSocio;
+	public void setControladorCliente(ControladorCliente controladorCliente) {
+		this.controladorCliente = controladorCliente;
 	}
 
-	public void rellenarFormulario(Cliente socio) {
-		this.id.setText(String.valueOf(socio.getId()));
-		this.nombre.setText(socio.getNombre());
-		this.apellido.setText(socio.getApellido());
-		this.direccion.setText(socio.getDireccion());
-		this.poblacion.setText(socio.getPoblacion());
-		this.provincia.setText(socio.getProvincia());
-		this.dni.setText(socio.getDni());
+	public void rellenarFormulario(Cliente cliente) {
+		this.id.setText(String.valueOf(cliente.getId()));
+		this.nombre.setText(cliente.getNombre());
+		this.direccion.setText(cliente.getDireccion());
+		this.codPostal.setText(cliente.getCodPostal());
+		this.telefono.setText(cliente.getTelefono());
 	}
 
 	public void clear() {
-		this.comboBoxSocios.removeAllItems();
+		this.comboBoxClientes.removeAllItems();
 		this.id.setText("");
 		this.nombre.setText("");
-		this.apellido.setText("");
 		this.direccion.setText("");
-		this.poblacion.setText("");
-		this.provincia.setText("");
-		this.dni.setText("");
+		this.codPostal.setText("");
+		this.telefono.setText("");
 	}
 
 	public void mostrarMensaje(String string) {
 		JOptionPane.showMessageDialog(this, string);
 		
 	}
+
+
 
 	
 }
