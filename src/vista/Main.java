@@ -78,7 +78,7 @@ public class Main {
 				controladorCliente.setFormularioDeBorrado(formularioDeBorrado);
 				controladorCliente.setFormularioCliente(formularioCliente);
 				controladorCliente.setFormDeModificado(formularioDeModificado);
-		//		controladorCliente.setFormTodosClientes(formularioTodosClientes);
+				controladorCliente.setFormTodosClientes(formularioTodosClientes);
 				
 				//prueba de formulario de busquedas
 				controladorCliente.setFormularioBusquedaCliente(formularioDeBusqueda);

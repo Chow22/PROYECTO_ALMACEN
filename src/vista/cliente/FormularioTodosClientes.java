@@ -15,6 +15,7 @@ import javax.swing.table.TableRowSorter;
 import controlador.ControladorCliente;
 import controlador.ControladorCliente;
 import modelo.Cliente;
+import vista.ConsultarArticulo;
 import vista.Principal;
 
 import javax.swing.JLabel;
@@ -64,18 +65,25 @@ public class FormularioTodosClientes extends JDialog {
 		lblConsultasDeClientes.setFont(new Font("Cambria", Font.BOLD, 25));
 		contentPanel.add(lblConsultasDeClientes);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 0, 552, 316);
-		contentPanel.add(label);
-		label.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 54, 403, 196);
-		contentPanel.add(scrollPane);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(34, 61, 477, 216);
+		contentPanel.add(scrollPane_1);
 		
 		tabla = new JTable();
-		scrollPane.setColumnHeaderView(tabla);
+		tabla.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
+		scrollPane_1.setViewportView(tabla);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+		label.setBounds(0, 0, 552, 316);
+		contentPanel.add(label);
 	}
+
 
 	public void rellenarTabla(ArrayList<Cliente> Clientes) {
 		
