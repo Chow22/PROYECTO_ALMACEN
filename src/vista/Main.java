@@ -4,6 +4,10 @@ import controlador.ControladorArticulo;
 import controlador.ControladorCliente;
 import modelo.ModeloArticulo;
 import modelo.ModeloCliente;
+import vista.articulo.BorrarArticulo;
+import vista.articulo.GestionArticulo;
+import vista.articulo.ListarArticulo;
+import vista.articulo.NuevoArticulo;
 import vista.cliente.FormularioCliente;
 import vista.cliente.FormularioDeBorrado;
 import vista.cliente.FormularioDeBusquedaCliente;
@@ -41,13 +45,13 @@ public class Main {
 		BorrarArticulo borrarArticulo = new BorrarArticulo(gestionArticulo, true);
 		borrarArticulo.setControladorArticulo(controladorArticulo);
 
-		ConsultarArticulo consultarArticulo = new ConsultarArticulo(gestionArticulo, true);
-		consultarArticulo.setControladorArticulo(controladorArticulo);
+		ListarArticulo listarArticulo = new ListarArticulo(gestionArticulo, true);
+		listarArticulo.setControladorArticulo(controladorArticulo);
 
 		// rellenar controlador articulo
 		controladorArticulo.setNuevoArticulo(nuevoArticulo);
 		controladorArticulo.setBorrarArticulo(borrarArticulo);
-		controladorArticulo.setConsultarArticulo(consultarArticulo);
+		controladorArticulo.setConsultarArticulo(listarArticulo);
 		controladorArticulo.setGestionArticulo(gestionArticulo);
 		controladorArticulo.setModeloArticulo(modeloArticulo);
 		

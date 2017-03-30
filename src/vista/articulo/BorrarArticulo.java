@@ -1,4 +1,4 @@
-package vista;
+package vista.articulo;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

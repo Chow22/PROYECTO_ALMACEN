@@ -1,4 +1,4 @@
-package vista;
+package vista.articulo;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -27,7 +27,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class ConsultarArticulo extends JDialog {
+public class ListarArticulo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -42,7 +42,7 @@ public class ConsultarArticulo extends JDialog {
 		this.controladorArticulo = controladorArticulo;
 	}
 
-	public ConsultarArticulo(JDialog parent, boolean modal) {
+	public ListarArticulo(JDialog parent, boolean modal) {
 
 		super(parent, modal);
 
@@ -52,12 +52,12 @@ public class ConsultarArticulo extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JLabel lblConsultasDeArticulos = new JLabel("CONSULTAS DE ARTICULOS");
-		lblConsultasDeArticulos.setForeground(Color.WHITE);
-		lblConsultasDeArticulos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultasDeArticulos.setFont(new Font("Cambria", Font.BOLD, 24));
-		lblConsultasDeArticulos.setBounds(79, 11, 380, 39);
-		contentPanel.add(lblConsultasDeArticulos);
+		JLabel lblListaDeArticulos = new JLabel("LISTA DE ARTICULOS");
+		lblListaDeArticulos.setForeground(Color.WHITE);
+		lblListaDeArticulos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblListaDeArticulos.setFont(new Font("Cambria", Font.BOLD, 24));
+		lblListaDeArticulos.setBounds(79, 11, 380, 39);
+		contentPanel.add(lblListaDeArticulos);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(34, 61, 477, 216);
@@ -73,7 +73,7 @@ public class ConsultarArticulo extends JDialog {
 		scrollPane_1.setViewportView(tabla);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+		label.setIcon(new ImageIcon(ListarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
 		label.setBounds(0, 0, 552, 316);
 		contentPanel.add(label);
 	}

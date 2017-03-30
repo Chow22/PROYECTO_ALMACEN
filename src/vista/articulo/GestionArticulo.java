@@ -1,4 +1,4 @@
-package vista;
+package vista.articulo;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.ControladorArticulo;
+import vista.Principal;
 import controlador.ControladorArticulo;
 
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ import java.awt.Color;
 public class GestionArticulo extends JDialog {
 
 	private ControladorArticulo controladorArticulo;
+	private NuevoArticulo nuevoArticulo;
 	
 	public ControladorArticulo getControladorArticulo() {
 		return controladorArticulo;
@@ -42,19 +44,19 @@ public class GestionArticulo extends JDialog {
 		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(null);
 		{
-			JButton nuevo = new JButton("NUEVO PRODUCTO");
+			JButton nuevo = new JButton("NUEVO ARTICULO");
 			nuevo.setFont(new Font("Cambria", Font.BOLD, 13));
 			nuevo.setBounds(179, 104, 170, 23);
 			getContentPane().add(nuevo);
 			{
-				JButton borrar = new JButton("BORRAR PRODUCTO");
+				JButton borrar = new JButton("BORRAR ARTICULO");
 				borrar.setFont(new Font("Cambria", Font.BOLD, 12));
 				borrar.setBounds(179, 148, 170, 23);
 				getContentPane().add(borrar);
 				
-						JButton listar = new JButton("LISTAR PRODUCTOS");
+						JButton listar = new JButton("LISTAR ARTICULO");
 						listar.setFont(new Font("Cambria", Font.BOLD, 12));
-						listar.setBounds(179, 192, 170, 23);
+						listar.setBounds(179, 237, 170, 23);
 						getContentPane().add(listar);
 						{
 							JLabel lblNewLabel = new JLabel("GESTION ARTICULO");
@@ -64,6 +66,15 @@ public class GestionArticulo extends JDialog {
 							lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 							lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 25));
 						}
+						
+						JButton consultar = new JButton("CONSULTAS ARTICULO");
+						consultar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+							}
+						});
+						consultar.setFont(new Font("Cambria", Font.BOLD, 12));
+						consultar.setBounds(179, 193, 170, 23);
+						getContentPane().add(consultar);
 						{
 							JLabel label = new JLabel("");
 							label.setBounds(0, 0, 552, 316);
@@ -73,7 +84,7 @@ public class GestionArticulo extends JDialog {
 						}
 						listar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								controladorArticulo.abrirConsultarArticulo();
+								controladorArticulo.abrirListarArticulo();
 							}
 						});
 				borrar.addActionListener(new ActionListener() {
@@ -85,8 +96,10 @@ public class GestionArticulo extends JDialog {
 			nuevo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					controladorArticulo.abrirNuevoArticulo();
+					
 				}
 			});
 		}
+		
 	}
 }

@@ -1,21 +1,28 @@
 package controlador;
 
 import vista.*;
+import vista.articulo.BorrarArticulo;
+import vista.articulo.ConsultarArticulo;
+import vista.articulo.GestionArticulo;
+import vista.articulo.ListarArticulo;
+import vista.articulo.NuevoArticulo;
 
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import modelo.*;
 
 public class ControladorArticulo {
 
 	// un atributo por cada ventana de Articulos-->5
+	private ConsultarArticulo consultarArticulo;
 	// un atributo por cada Tabla de la BD--> 1
 	private GestionArticulo gestionArticulo;
 	private NuevoArticulo nuevoArticulo;
 	private BorrarArticulo borrarArticulo;
-	private ConsultarArticulo consultarArticulo;
+	private ListarArticulo listarArticulo;
 	// private ListarArticulos listarArticulos;
 
 	private ModeloArticulo modeloArticulo;
@@ -31,12 +38,12 @@ public class ControladorArticulo {
 
 	}
 
-	public ConsultarArticulo getConsultarArticulo() {
-		return consultarArticulo;
+	public ListarArticulo getConsultarArticulo() {
+		return listarArticulo;
 	}
 
-	public void setConsultarArticulo(ConsultarArticulo consultarArticulo) {
-		this.consultarArticulo = consultarArticulo;
+	public void setConsultarArticulo(ListarArticulo consultarArticulo) {
+		this.listarArticulo = consultarArticulo;
 	}
 
 	public GestionArticulo getGestionArticulo() {
@@ -73,7 +80,7 @@ public class ControladorArticulo {
 
 	public void abrirNuevoArticulo() {
 		nuevoArticulo.setVisible(true);
-
+		nuevoArticulo.limpiar();
 	}
 
 	public void abrirBorrarArticulo() {
@@ -130,13 +137,13 @@ public class ControladorArticulo {
 		}
 	}
 
-	public void abrirConsultarArticulo() {
+	public void abrirListarArticulo() {
 		ArrayList<Articulo> articulos;
 		try {
 			articulos = modeloArticulo.seleccionarTodos();
-			consultarArticulo.rellenarTabla(articulos);
+			listarArticulo.rellenarTabla(articulos);
 
-			consultarArticulo.setVisible(true);
+			listarArticulo.setVisible(true);
 		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULO	"+e.getMessage());
@@ -144,9 +151,16 @@ public class ControladorArticulo {
 		
 	}
 
-	
-		
-		
+
+	public void seleccionarArticulosPorNombre(String nombre) {
+		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
+		try {
+			articulos=modeloArticulo.seleccionarDatosArticuloNombre(nombre);
+			consultarArticulo.rellenarTablaPorNombre(articulos);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR LIBROS");
+		}
+	}	
 	}
 
 

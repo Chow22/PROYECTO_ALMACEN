@@ -15,8 +15,8 @@ import javax.swing.table.TableRowSorter;
 import controlador.ControladorCliente;
 import controlador.ControladorCliente;
 import modelo.Cliente;
-import vista.ConsultarArticulo;
 import vista.Principal;
+import vista.articulo.ListarArticulo;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -79,7 +79,7 @@ public class FormularioTodosClientes extends JDialog {
 		scrollPane_1.setViewportView(tabla);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+		label.setIcon(new ImageIcon(ListarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
 		label.setBounds(0, 0, 552, 316);
 		contentPanel.add(label);
 	}

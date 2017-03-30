@@ -197,4 +197,31 @@ public class ModeloArticulo extends Conectar {
 
 		} 
 	}
+	public ArrayList<Articulo> seleccionarDatosArticuloNombre(String nombre) throws Exception {
+		PreparedStatement pst;
+		Articulo libro = new Articulo();
+		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
+		try {
+			pst = cn.prepareStatement("SELECT * FROM ARTICULOS WHERE nombre=?");
+			pst.setString(1, nombre);
+
+			ResultSet rs = pst.executeQuery();// ejecuta
+
+			while (rs.next()) { // coge el titulo que es UNO SOLO
+
+				libro.setId(rs.getInt(1));
+				libro.setNombre(rs.getString(2));
+				libro.setProveedor(rs.getString(3));
+				libro.setPrecio(rs.getDouble(4));
+				libro.setExistencias(rs.getInt(5));
+				
+				articulos.add(libro);
+			}
+			return articulos;
+
+		} catch (Exception e) {
+			throw e;
+
+		}
+	}
 }

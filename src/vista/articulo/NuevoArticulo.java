@@ -1,4 +1,4 @@
-package vista;
+package vista.articulo;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -125,14 +125,16 @@ public class NuevoArticulo extends JDialog {
 		});
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				nombre.setText("");
-				proveedor.setText("");
-				precio.setText("");
-				existencias.setText("");
+				limpiar();
 			}
 		});
 	}
+	public void limpiar(){
+	nombre.setText("");
+	proveedor.setText("");
+	precio.setText("");
+	existencias.setText("");
+	
+}
 	
 }
