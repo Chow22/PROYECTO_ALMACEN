@@ -5,6 +5,7 @@ import controlador.ControladorCliente;
 import modelo.ModeloArticulo;
 import modelo.ModeloCliente;
 import vista.articulo.BorrarArticulo;
+import vista.articulo.ConsultarArticulo;
 import vista.articulo.GestionArticulo;
 import vista.articulo.ListarArticulo;
 import vista.articulo.NuevoArticulo;
@@ -48,12 +49,16 @@ public class Main {
 		ListarArticulo listarArticulo = new ListarArticulo(gestionArticulo, true);
 		listarArticulo.setControladorArticulo(controladorArticulo);
 
+		ConsultarArticulo consultarArticulo= new ConsultarArticulo(gestionArticulo, true);
+		consultarArticulo.setControladorArticulo(controladorArticulo);
+		
 		// rellenar controlador articulo
 		controladorArticulo.setNuevoArticulo(nuevoArticulo);
 		controladorArticulo.setBorrarArticulo(borrarArticulo);
-		controladorArticulo.setConsultarArticulo(listarArticulo);
+		controladorArticulo.setListarArticulo(listarArticulo);
 		controladorArticulo.setGestionArticulo(gestionArticulo);
 		controladorArticulo.setModeloArticulo(modeloArticulo);
+		controladorArticulo.setConsultarArticulo(consultarArticulo);
 		
 		// Cliente
 				//creacion de ventanas de la gestion de clientes y asignar controladores

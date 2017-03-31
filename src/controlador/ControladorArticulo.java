@@ -23,7 +23,8 @@ public class ControladorArticulo {
 	private NuevoArticulo nuevoArticulo;
 	private BorrarArticulo borrarArticulo;
 	private ListarArticulo listarArticulo;
-	// private ListarArticulos listarArticulos;
+
+
 
 	private ModeloArticulo modeloArticulo;
 
@@ -32,18 +33,32 @@ public class ControladorArticulo {
 
 	}
 
+
 	public void abrirGestionArticulo() {
 
 		gestionArticulo.setVisible(true);
 
 	}
 
+
+	public void setConsultarArticulo(ConsultarArticulo consultarArticulo) {
+		this.consultarArticulo = consultarArticulo;
+	}
+
+
 	public ListarArticulo getConsultarArticulo() {
 		return listarArticulo;
 	}
 
-	public void setConsultarArticulo(ListarArticulo consultarArticulo) {
-		this.listarArticulo = consultarArticulo;
+	
+	public ListarArticulo getListarArticulo() {
+		return listarArticulo;
+	}
+
+
+	
+	public void setListarArticulo(ListarArticulo listarArticulo) {
+		this.listarArticulo = listarArticulo;
 	}
 
 	public GestionArticulo getGestionArticulo() {
@@ -158,9 +173,40 @@ public class ControladorArticulo {
 			articulos=modeloArticulo.seleccionarDatosArticuloNombre(nombre);
 			consultarArticulo.rellenarTablaPorNombre(articulos);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR LIBROS");
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULOS");
 		}
-	}	
 	}
+	
+	public void seleccionarArticulosPorProveedor(String proveedor) {
+		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
+		try {
+			articulos=modeloArticulo.seleccionarDatosArticuloProveedor(proveedor);
+			consultarArticulo.rellenarTablaPorProveedor(articulos);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULOS");
+		}
+	}
+
+	public void abrirConsultarArticulo() {
+		ArrayList<Articulo> articulos;
+
+		try {
+			articulos = modeloArticulo.seleccionarTodos();
+			consultarArticulo.rellenarListaConsultaNombres(articulos);
+
+			articulos = modeloArticulo.seleccionarTodos();
+			consultarArticulo.rellenarListaConsultaProveedores(articulos);
+			
+			consultarArticulo.setVisible(true);
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR AL SELECCIONAR ARTICULO ");
+		}
+		
+		
+	}
+		
+	}	
+	
 
 

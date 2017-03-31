@@ -199,7 +199,7 @@ public class ModeloArticulo extends Conectar {
 	}
 	public ArrayList<Articulo> seleccionarDatosArticuloNombre(String nombre) throws Exception {
 		PreparedStatement pst;
-		Articulo libro = new Articulo();
+		Articulo articulo = new Articulo();
 		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
 		try {
 			pst = cn.prepareStatement("SELECT * FROM ARTICULOS WHERE nombre=?");
@@ -207,15 +207,15 @@ public class ModeloArticulo extends Conectar {
 
 			ResultSet rs = pst.executeQuery();// ejecuta
 
-			while (rs.next()) { // coge el titulo que es UNO SOLO
+			while (rs.next()) { // coge el NOMBRE que es UNO SOLO
 
-				libro.setId(rs.getInt(1));
-				libro.setNombre(rs.getString(2));
-				libro.setProveedor(rs.getString(3));
-				libro.setPrecio(rs.getDouble(4));
-				libro.setExistencias(rs.getInt(5));
+				articulo.setId(rs.getInt(1));
+				articulo.setNombre(rs.getString(2));
+				articulo.setProveedor(rs.getString(3));
+				articulo.setPrecio(rs.getDouble(4));
+				articulo.setExistencias(rs.getInt(5));
 				
-				articulos.add(libro);
+				articulos.add(articulo);
 			}
 			return articulos;
 
@@ -224,4 +224,35 @@ public class ModeloArticulo extends Conectar {
 
 		}
 	}
-}
+
+	public ArrayList<Articulo> seleccionarDatosArticuloProveedor(String nombre) throws Exception {
+		PreparedStatement pst;
+		Articulo articulo = new Articulo();
+		ArrayList<Articulo> articulos=new ArrayList<Articulo>();
+		try {
+			pst = cn.prepareStatement("SELECT * FROM ARTICULOS WHERE proveedor=?");
+			pst.setString(1, nombre);
+
+			ResultSet rs = pst.executeQuery();// ejecuta
+
+			while (rs.next()) { // coge el NOMBRE que es UNO SOLO
+
+				articulo.setId(rs.getInt(1));
+				articulo.setNombre(rs.getString(2));
+				articulo.setProveedor(rs.getString(3));
+				articulo.setPrecio(rs.getDouble(4));
+				articulo.setExistencias(rs.getInt(5));
+				
+				articulos.add(articulo);
+			}
+			return articulos;
+
+		} catch (Exception e) {
+			throw e;
+
+		}
+	}
+	
+
+	}
+

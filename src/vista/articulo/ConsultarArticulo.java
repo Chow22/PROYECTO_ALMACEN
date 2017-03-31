@@ -12,33 +12,46 @@ import javax.swing.table.DefaultTableModel;
 
 import controlador.ControladorArticulo;
 import modelo.Articulo;
+import modelo.Articulo;
+import vista.Principal;
 
 import java.awt.CardLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class ConsultarArticulo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	
+
 	private ControladorArticulo controladorArticulo;
 	private JComboBox nombres;
 	private JComboBox proveedores;
-	private JComboBox num_pag;
-	private JTable tablaPorNombre;
+	private JComboBox precio;
 
-	
+	private JTable tablaPorNombre;
+	private JTable tablaPorProveedor;
+
+	public ControladorArticulo getControladorArticulo() {
+		return controladorArticulo;
+	}
+
+	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
+		this.controladorArticulo = controladorArticulo;
+	}
+
 	public ConsultarArticulo(JDialog parent, boolean modal) {
-		
-		super(parent,modal);
-		
-		setBounds(100, 100, 450, 300);
+
+		super(parent, modal);
+
+		setBounds(100, 100, 568, 355);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,50 +63,75 @@ public class ConsultarArticulo extends JDialog {
 				JPanel PorNombre = new JPanel();
 				tabbedPane.addTab("Por Nombre", null, PorNombre, null);
 				PorNombre.setLayout(null);
-				
+
 				nombres = new JComboBox();
 				nombres.addItemListener(new ItemListener() {
 					public void itemStateChanged(ItemEvent arg0) {
-						
-						controladorArticulo.seleccionarArticulosPorNombre((String)nombres.getSelectedItem());
-							
+
+						controladorArticulo.seleccionarArticulosPorNombre((String) nombres.getSelectedItem());
+
 					}
 				});
 				{
 					JScrollPane scrollPane = new JScrollPane();
-					scrollPane.setBounds(0, 85, 419, 138);
+					scrollPane.setBounds(51, 91, 419, 138);
 					PorNombre.add(scrollPane);
 					{
 						tablaPorNombre = new JTable();
 						scrollPane.setViewportView(tablaPorNombre);
 					}
 				}
-				nombres.setBounds(126, 29, 232, 20);
+				nombres.setBounds(187, 29, 232, 20);
 				PorNombre.add(nombres);
-				
+
 				JLabel nombre = new JLabel("Nombres");
-				nombre.setBounds(32, 32, 46, 14);
+				nombre.setForeground(Color.WHITE);
+				nombre.setBounds(73, 32, 63, 14);
 				PorNombre.add(nombre);
+				{
+					JLabel label = new JLabel("");
+					label.setIcon(new ImageIcon(
+							ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+					label.setBounds(0, 0, 537, 278);
+					PorNombre.add(label);
+				}
 			}
 			{
 				JPanel porProveedor = new JPanel();
 				tabbedPane.addTab("Por Proveedor", null, porProveedor, null);
 				porProveedor.setLayout(null);
 				{
+					JScrollPane scrollPane = new JScrollPane();
+					scrollPane.setBounds(44, 94, 419, 138);
+					porProveedor.add(scrollPane);
+					{
+						tablaPorProveedor = new JTable();
+						scrollPane.setViewportView(tablaPorProveedor);
+					}
+				}
+				{
 					JLabel lblProveedores = new JLabel("Proveedores");
-					lblProveedores.setBounds(26, 27, 61, 14);
+					lblProveedores.setForeground(Color.WHITE);
+					lblProveedores.setBounds(72, 33, 81, 14);
 					porProveedor.add(lblProveedores);
 				}
 				{
 					proveedores = new JComboBox();
 					proveedores.addItemListener(new ItemListener() {
 						public void itemStateChanged(ItemEvent e) {
-							
-							//controladorArticulo.seleccionarArticulosPorProveedor((String)titulos.setSelectedItem());
+
+							controladorArticulo.seleccionarArticulosPorProveedor((String)proveedores.getSelectedItem());
 						}
 					});
-					proveedores.setBounds(146, 24, 228, 20);
+					proveedores.setBounds(221, 30, 228, 20);
 					porProveedor.add(proveedores);
+				}
+				{
+					JLabel label = new JLabel("");
+					label.setIcon(new ImageIcon(
+							ConsultarArticulo.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+					label.setBounds(0, 0, 537, 278);
+					porProveedor.add(label);
 				}
 			}
 			{
@@ -102,78 +140,77 @@ public class ConsultarArticulo extends JDialog {
 				PorPrecio.setLayout(null);
 				{
 					JLabel lblPrecio = new JLabel("Precio");
-					lblPrecio.setBounds(54, 30, 76, 14);
+					lblPrecio.setForeground(Color.WHITE);
+					lblPrecio.setBounds(82, 33, 76, 14);
 					PorPrecio.add(lblPrecio);
 				}
 				{
-					num_pag = new JComboBox();
-					num_pag.setModel(new DefaultComboBoxModel(new String[] {"<  5", " > 5 y <  30", "> 30"}));
-					num_pag.setBounds(173, 27, 224, 20);
-					PorPrecio.add(num_pag);
+					precio = new JComboBox();
+					precio.setModel(new DefaultComboBoxModel(new String[] { "<  5", " > 5 y <  30", "> 30" }));
+					precio.setBounds(217, 30, 224, 20);
+					PorPrecio.add(precio);
 				}
+
+				JLabel label = new JLabel("");
+				PorPrecio.add(label);
+				label.setIcon(
+						new ImageIcon(Principal.class.getResource("/imagenes/Abstract-circles-blue-star-light_m.jpg")));
+				label.setBounds(0, 0, 537, 278);
 			}
 		}
 	}
-
 
 	public void rellenarTablaPorNombre(ArrayList<Articulo> articulos) {
 
-		DefaultTableModel dtm=new DefaultTableModel();
-		
-		String[] encabezados={"ID","TITULO","AUTOR","NUM PAGINAS"};
-		
+		DefaultTableModel dtm = new DefaultTableModel();
+
+		String[] encabezados = { "ID", "NOMBRE", "PROVEEDOR", "PRECIO", "EXISTENCIAS" };
+
 		dtm.setColumnIdentifiers(encabezados);
-		
-		for (Articulo articulo: articulos){
-			
-			String[]  fila={ String.valueOf(articulo.getId()),articulo.getNombre(),articulo.getProveedor(),String.valueOf(articulo.getPrecio()),String.valueOf(articulo.getExistencias())};
+
+		for (Articulo articulo : articulos) {
+
+			String[] fila = { String.valueOf(articulo.getId()), articulo.getNombre(), articulo.getProveedor(),
+					String.valueOf(articulo.getPrecio()), String.valueOf(articulo.getExistencias()) };
 			dtm.addRow(fila);
 		}
 		tablaPorNombre.setModel(dtm);
-		
+
 	}
+	
 	public void rellenarTablaPorProveedor(ArrayList<Articulo> articulos) {
 
-		DefaultTableModel dtm=new DefaultTableModel();
-				
-				String[] encabezados={"ID","TITULO","AUTOR","NUM PAGINAS"};
-				
-				dtm.setColumnIdentifiers(encabezados);
-				
-				for (Articulo articulo:articulos){
-					
-					String[]  fila={ String.valueOf(articulo.getId()),articulo.getNombre(),articulo.getProveedor(),String.valueOf(articulo.getPrecio()),String.valueOf(articulo.getExistencias())};
-					dtm.addRow(fila);
-				}
-				//tablaPorProveedor.setModel(dtm);
-				
-			}
-	
+		DefaultTableModel dtm = new DefaultTableModel();
 
-	public ControladorArticulo getControladorArticulo() {
-		return controladorArticulo;
+		String[] encabezados = { "ID", "NOMBRE", "PROVEEDOR", "PRECIO", "EXISTENCIAS" };
+
+		dtm.setColumnIdentifiers(encabezados);
+
+		for (Articulo articulo : articulos) {
+
+			String[] fila = { String.valueOf(articulo.getId()), articulo.getNombre(), articulo.getProveedor(),
+					String.valueOf(articulo.getPrecio()), String.valueOf(articulo.getExistencias()) };
+			dtm.addRow(fila);
+		}
+		tablaPorProveedor.setModel(dtm);
+
 	}
 
+	public void rellenarListaConsultaNombres(ArrayList<Articulo> articulos) {
+		nombres.removeAllItems();
 
-	public void setControladorArticulo(ControladorArticulo controladorArticulo) {
-		this.controladorArticulo= controladorArticulo;
+		for (Articulo articulo : articulos) {
+			nombres.addItem(articulo.getNombre());
+		}
+
 	}
 
-
-	public void rellenarListaProveedors(ArrayList<Articulo> articulos) {
+	public void rellenarListaConsultaProveedores(ArrayList<Articulo> articulos) {
 		proveedores.removeAllItems();
-		
-		for (Articulo articulo:articulos){
+
+		for (Articulo articulo : articulos) {
 			proveedores.addItem(articulo.getProveedor());
 		}
-	}
-
-
-	public void rellenarListaNombres(ArrayList<String> valores) {
-		nombres.removeAllItems();
 		
-		for (String autor:valores){	
-			nombres.addItem(autor);
-		}
 	}
 }

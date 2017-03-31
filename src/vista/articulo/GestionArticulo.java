@@ -70,6 +70,7 @@ public class GestionArticulo extends JDialog {
 						JButton consultar = new JButton("CONSULTAS ARTICULO");
 						consultar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								controladorArticulo.abrirConsultarArticulo();
 							}
 						});
 						consultar.setFont(new Font("Cambria", Font.BOLD, 12));
